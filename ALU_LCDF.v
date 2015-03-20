@@ -28,7 +28,7 @@ module ALU_LCDF(
 	srl_32 alu_srl_32(Ai, Bi, alu_srl);
 
 	wire [31:0] alu_sub = Ai - Bi;
-	
+
 	wire [31:0] alu_slt = Ai < Bi ? 1 : 0;
 
 	mux8to1 #(32) mux_alu({alu_slt, alu_sub, alu_srl, alu_nor, alu_xor, alu_adc, alu_or, alu_and}, ALU_Ctr, ALU_out);
