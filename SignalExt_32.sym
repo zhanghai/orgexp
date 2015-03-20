@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="SignalExt_32">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2014-6-26T12:2:4</timestamp>
+    <pin polarity="Output" x="208" y="-32" name="So(31:0)" />
+    <pin polarity="Input" x="64" y="-32" name="S" />
+    <graph>
+        <line x2="76" y1="-32" y2="-32" x1="64" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="192" y="-32" type="pin So(31:0)" />
+        <line x2="208" y1="-32" y2="-32" style="linewidth:W" x1="196" />
+        <rect width="120" x="76" y="-52" height="40" />
+        <attrtext attrname="PinName" x="80" y="-32" type="pin S" />
+        <attrtext style="alignment:BCENTER;fontsize:8;fontname:Arial;textcolor:rgb(255,255,255)" attrname="SymbolName" x="136" y="-40" type="symbol" />
+    </graph>
+</symbol>
