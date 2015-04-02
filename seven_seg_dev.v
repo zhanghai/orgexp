@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module Display(
+module seven_seg_dev(
 		input [31:0] disp_num,
 		input [1:0] SW,
 		input flash_clk,
@@ -60,10 +60,11 @@ module Display(
 	end
 
 	mux4to1 #(8) mux_temp_seg({
-			disp_num[30], disp_num[3], disp_num[10], disp_num[22], disp_num[31], disp_num[23], disp_num[11], disp_num[15],
-			disp_num[28], disp_num[2], disp_num[8], disp_num[20], disp_num[29], disp_num[21], disp_num[9], disp_num[14],
-			disp_num[26], disp_num[1], disp_num[6], disp_num[18], disp_num[27], disp_num[19], disp_num[7], disp_num[13],
-			disp_num[24], disp_num[0], disp_num[4], disp_num[16], disp_num[25], disp_num[17], disp_num[5], disp_num[12]}, Scanning, temp_seg);
+				disp_num[30], disp_num[3], disp_num[10], disp_num[22], disp_num[31], disp_num[23], disp_num[11], disp_num[15],
+				disp_num[28], disp_num[2], disp_num[8], disp_num[20], disp_num[29], disp_num[21], disp_num[9], disp_num[14],
+				disp_num[26], disp_num[1], disp_num[6], disp_num[18], disp_num[27], disp_num[19], disp_num[7], disp_num[13],
+				disp_num[24], disp_num[0], disp_num[4], disp_num[16], disp_num[25], disp_num[17], disp_num[5], disp_num[12]
+			}, Scanning, temp_seg);
 
 	// Digit select: ANcode
 	mux4to1 #(4) mux_anode({4'b0111, 4'b1011, 4'b1101, 4'b1110}, Scanning, anode);

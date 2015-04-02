@@ -96,6 +96,8 @@
         <blockdef name="Input_2_32bit">
             <timestamp>2015-3-13T8:22:6</timestamp>
             <rect style="fillcolor:rgb(170,255,255);fillstyle:Solid" width="256" x="64" y="-272" height="272" />
+            <rect width="64" x="320" y="-44" height="24" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
             <rect width="64" x="320" y="-92" height="24" />
             <line x2="384" y1="-80" y2="-80" x1="320" />
             <rect width="64" x="0" y="-76" height="24" />
@@ -106,11 +108,9 @@
             <line x2="0" y1="-160" y2="-160" x1="64" />
             <rect width="64" x="320" y="-188" height="24" />
             <line x2="384" y1="-176" y2="-176" x1="320" />
-            <line x2="384" y1="-32" y2="-32" x1="320" />
-            <rect width="64" x="320" y="-44" height="24" />
         </blockdef>
-        <blockdef name="Output_2_Disp">
-            <timestamp>2014-11-8T10:34:22</timestamp>
+        <blockdef name="seven_seg_Dev_IO">
+            <timestamp>2015-4-2T7:57:13</timestamp>
             <rect style="fillcolor:rgb(150,131,255);fillstyle:Solid" width="320" x="64" y="-896" height="896" />
             <line x2="0" y1="-864" y2="-864" x1="64" />
             <rect width="64" x="0" y="-684" height="24" />
@@ -139,10 +139,10 @@
             <line x2="448" y1="-704" y2="-704" x1="384" />
             <rect width="64" x="384" y="-652" height="24" />
             <line x2="448" y1="-640" y2="-640" x1="384" />
-            <rect width="64" x="384" y="-780" height="24" />
-            <line x2="448" y1="-768" y2="-768" x1="384" />
             <line x2="0" y1="-816" y2="-816" x1="64" />
             <line x2="0" y1="-768" y2="-768" x1="64" />
+            <rect width="64" x="384" y="-812" height="24" />
+            <line x2="448" y1="-800" y2="-800" x1="384" />
         </blockdef>
         <blockdef name="LED_DEV">
             <timestamp>2014-11-8T13:40:1</timestamp>
@@ -157,8 +157,8 @@
             <rect width="64" x="384" y="-92" height="24" />
             <line x2="448" y1="-80" y2="-80" x1="384" />
         </blockdef>
-        <blockdef name="Display">
-            <timestamp>2014-11-8T10:57:22</timestamp>
+        <blockdef name="seven_seg_dev">
+            <timestamp>2015-3-26T7:37:31</timestamp>
             <rect width="64" x="400" y="-236" height="24" />
             <line x2="400" y1="-224" y2="-224" x1="464" />
             <rect width="64" x="400" y="-172" height="24" />
@@ -170,7 +170,7 @@
             <line x2="0" y1="-80" y2="-80" x1="64" />
             <rect width="64" x="0" y="-220" height="24" />
             <line x2="0" y1="-272" y2="-272" x1="64" />
-            <rect style="linewidth:W;linecolor:rgb(0,0,255);fillcolor:rgb(255,120,102);fillstyle:Solid" width="336" x="64" y="-356" height="340" />
+            <rect style="linecolor:rgb(0,0,0);fillcolor:rgb(174,185,255);fillstyle:Solid" width="336" x="64" y="-356" height="340" />
             <line x2="464" y1="-304" y2="-304" x1="400" />
             <rect width="64" x="400" y="-316" height="24" />
             <rect width="64" x="400" y="-76" height="24" />
@@ -266,26 +266,26 @@
             <blockpin name="button_pulse(3:0)" />
             <blockpin signalname="BTN(3:0)" name="button(3:0)" />
         </block>
-        <block symbolname="Output_2_Disp" name="M5">
+        <block symbolname="seven_seg_Dev_IO" name="U5">
             <blockpin signalname="clk_50mhz" name="clk" />
-            <blockpin signalname="SW(7:5)" name="Disp_sel(2:0)" />
+            <blockpin signalname="SW(7:5)" name="Test(2:0)" />
             <blockpin signalname="V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5" name="point_in(31:0)" />
             <blockpin signalname="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,blink(3:0),blink(3:0)" name="blink_in(31:0)" />
-            <blockpin signalname="XLXN_240(31:0)" name="Disp0(31:0)" />
-            <blockpin signalname="XLXN_239(31:0)" name="Disp1(31:0)" />
-            <blockpin signalname="ALU_out(31:0)" name="Disp2(31:0)" />
-            <blockpin signalname="XLXN_279(31:0)" name="Disp3(31:0)" />
-            <blockpin signalname="So(31:0)" name="Disp4(31:0)" />
-            <blockpin signalname="clkdiv(31:0)" name="Disp5(31:0)" />
-            <blockpin signalname="XLXN_283(31:0)" name="Disp6(31:0)" />
-            <blockpin signalname="XLXN_286(31:0)" name="Disp7(31:0)" />
+            <blockpin name="disp_cpudata(31:0)" />
+            <blockpin signalname="XLXN_239(31:0)" name="Test_data1(31:0)" />
+            <blockpin signalname="ALU_out(31:0)" name="Test_data2(31:0)" />
+            <blockpin signalname="XLXN_279(31:0)" name="Test_data3(31:0)" />
+            <blockpin signalname="So(31:0)" name="Test_data4(31:0)" />
+            <blockpin signalname="clkdiv(31:0)" name="Test_data5(31:0)" />
+            <blockpin signalname="XLXN_283(31:0)" name="Test_data6(31:0)" />
+            <blockpin signalname="XLXN_286(31:0)" name="Test_data7(31:0)" />
             <blockpin signalname="XLXN_128(3:0)" name="blink_out(3:0)" />
             <blockpin signalname="XLXN_129(3:0)" name="point_out(3:0)" />
-            <blockpin signalname="XLXN_188(31:0)" name="Disp_num(31:0)" />
             <blockpin name="rst" />
-            <blockpin name="EN" />
+            <blockpin name="GPIOe0000000_we" />
+            <blockpin signalname="XLXN_188(31:0)" name="Disp_num(31:0)" />
         </block>
-        <block symbolname="Display" name="M3">
+        <block symbolname="seven_seg_dev" name="U6">
             <blockpin signalname="XLXN_129(3:0)" name="pointing(3:0)" />
             <blockpin signalname="XLXN_128(3:0)" name="blinking(3:0)" />
             <blockpin signalname="SW_OK(1:0)" name="SW(1:0)" />
@@ -405,8 +405,8 @@
             <wire x2="784" y1="176" y2="224" x1="784" />
             <wire x2="1008" y1="224" y2="224" x1="784" />
         </branch>
-        <instance x="1840" y="400" name="M3" orien="R0">
-            <attrtext style="fontsize:58;fontname:Arial" attrname="InstName" x="96" y="-320" type="instance" />
+        <instance x="1840" y="400" name="U6" orien="R0">
+            <attrtext style="fontsize:58;fontname:Arial;textcolor:rgb(255,0,0)" attrname="InstName" x="96" y="-320" type="instance" />
         </instance>
         <bustap x2="1696" y1="128" y2="128" x1="1600" />
         <branch name="clkdiv(24)">
@@ -601,7 +601,7 @@
             <wire x2="1840" y1="192" y2="192" x1="1808" />
             <wire x2="3424" y1="752" y2="752" x1="3408" />
         </branch>
-        <instance x="2960" y="1520" name="M5" orien="R0">
+        <instance x="2960" y="1520" name="U5" orien="R0">
             <attrtext style="fontsize:58;fontname:Arial;textcolor:rgb(255,0,0)" attrname="InstName" x="176" y="-832" type="instance" />
         </instance>
         <branch name="SW_OK(1:0)">

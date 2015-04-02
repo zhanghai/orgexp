@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="seven_seg_dev">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2015-2-15T18:48:17</timestamp>
+    <attr value="seven_seg_dev" name="VeriModel" />
+    <pin polarity="Input" x="464" y="-224" name="pointing(3:0)" />
+    <pin polarity="Input" x="464" y="-160" name="blinking(3:0)" />
+    <pin polarity="Input" x="0" y="-144" name="SW(1:0)" />
+    <pin polarity="Input" x="0" y="-80" name="Scanning(1:0)" />
+    <pin polarity="Input" x="0" y="-208" name="disp_num(31:0)" />
+    <pin polarity="Input" x="0" y="-272" name="flash_clk" />
+    <pin polarity="Output" x="464" y="-304" name="SEGMENT(7:0)" />
+    <pin polarity="Output" x="464" y="-64" name="AN(3:0)" />
+    <graph>
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="264" y="-160" type="pin blinking(3:0)" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="264" y="-228" type="pin pointing(3:0)" />
+        <rect width="64" x="400" y="-236" height="24" />
+        <line x2="400" y1="-224" y2="-224" x1="464" />
+        <rect width="64" x="400" y="-172" height="24" />
+        <line x2="400" y1="-160" y2="-160" x1="464" />
+        <line x2="0" y1="-208" y2="-208" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-144" type="pin SW(1:0)" />
+        <rect width="64" x="0" y="-156" height="24" />
+        <line x2="0" y1="-144" y2="-144" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-80" type="pin Scanning(1:0)" />
+        <rect width="64" x="0" y="-92" height="24" />
+        <line x2="0" y1="-80" y2="-80" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-208" type="pin disp_num(31:0)" />
+        <rect width="64" x="0" y="-220" height="24" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-272" type="pin flash_clk" />
+        <line x2="0" y1="-272" y2="-272" x1="64" />
+        <rect style="linecolor:rgb(0,0,0);fillcolor:rgb(174,185,255);fillstyle:Solid" width="336" x="64" y="-356" height="340" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="392" y="-304" type="pin SEGMENT(7:0)" />
+        <line x2="464" y1="-304" y2="-304" x1="400" />
+        <rect width="64" x="400" y="-316" height="24" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="392" y="-64" type="pin AN(3:0)" />
+        <rect width="64" x="400" y="-76" height="24" />
+        <line x2="464" y1="-64" y2="-64" x1="400" />
+        <attrtext style="alignment:BCENTER;fontsize:38;fontname:Arial;textcolor:rgb(255,0,0)" attrname="SymbolName" x="204" y="-20" type="symbol" />
+    </graph>
+</symbol>
