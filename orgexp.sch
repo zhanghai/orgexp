@@ -28,7 +28,6 @@
         <signal name="N0" />
         <signal name="SW(7:0)" />
         <signal name="LED(7:0)" />
-        <signal name="XLXN_188(31:0)" />
         <signal name="SW_OK(1:0)" />
         <signal name="V5" />
         <signal name="push_out(3:0)" />
@@ -56,6 +55,7 @@
         <signal name="N0,N0,N0,N0,N0,SW(3),clkdiv(27:24)" />
         <signal name="XLXN_292" />
         <signal name="SW_OK(4)" />
+        <signal name="Disp_num(31:0)" />
         <port polarity="Output" name="SEGMENT(7)" />
         <port polarity="Output" name="SEGMENT(6)" />
         <port polarity="Output" name="SEGMENT(5)" />
@@ -281,16 +281,16 @@
             <blockpin signalname="XLXN_286(31:0)" name="Test_data7(31:0)" />
             <blockpin signalname="XLXN_128(3:0)" name="blink_out(3:0)" />
             <blockpin signalname="XLXN_129(3:0)" name="point_out(3:0)" />
-            <blockpin name="rst" />
-            <blockpin name="GPIOe0000000_we" />
-            <blockpin signalname="XLXN_188(31:0)" name="Disp_num(31:0)" />
+            <blockpin signalname="N0" name="rst" />
+            <blockpin signalname="V5" name="GPIOe0000000_we" />
+            <blockpin signalname="Disp_num(31:0)" name="Disp_num(31:0)" />
         </block>
         <block symbolname="seven_seg_dev" name="U6">
             <blockpin signalname="XLXN_129(3:0)" name="pointing(3:0)" />
             <blockpin signalname="XLXN_128(3:0)" name="blinking(3:0)" />
             <blockpin signalname="SW_OK(1:0)" name="SW(1:0)" />
             <blockpin signalname="clkdiv(19:18)" name="Scanning(1:0)" />
-            <blockpin signalname="XLXN_188(31:0)" name="disp_num(31:0)" />
+            <blockpin signalname="Disp_num(31:0)" name="disp_num(31:0)" />
             <blockpin signalname="clkdiv(24)" name="flash_clk" />
             <blockpin signalname="SEGMENT(7:0)" name="SEGMENT(7:0)" />
             <blockpin signalname="AN(3:0)" name="AN(3:0)" />
@@ -594,15 +594,8 @@
         <circle style="linecolor:rgb(0,0,255);fillcolor:rgb(255,0,0);fillstyle:Solid" r="40" cx="2812" cy="2236" />
         <iomarker fontsize="28" x="3344" y="2304" name="LED(7:0)" orien="R0" />
         <text style="fontsize:58;fontname:Arial" x="2812" y="2316">LED </text>
-        <branch name="XLXN_188(31:0)">
-            <wire x2="1808" y1="192" y2="544" x1="1808" />
-            <wire x2="3424" y1="544" y2="544" x1="1808" />
-            <wire x2="3424" y1="544" y2="752" x1="3424" />
-            <wire x2="1840" y1="192" y2="192" x1="1808" />
-            <wire x2="3424" y1="752" y2="752" x1="3408" />
-        </branch>
         <instance x="2960" y="1520" name="U5" orien="R0">
-            <attrtext style="fontsize:58;fontname:Arial;textcolor:rgb(255,0,0)" attrname="InstName" x="176" y="-832" type="instance" />
+            <attrtext style="fontsize:58;fontname:Arial;textcolor:rgb(255,0,0)" attrname="InstName" x="144" y="-848" type="instance" />
         </instance>
         <branch name="SW_OK(1:0)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="1744" y="256" type="branch" />
@@ -815,9 +808,8 @@
         </instance>
         <branch name="XLXN_286(31:0)">
             <wire x2="2224" y1="2256" y2="2256" x1="976" />
-            <wire x2="2944" y1="1488" y2="1488" x1="2224" />
-            <wire x2="2960" y1="1488" y2="1488" x1="2944" />
             <wire x2="2224" y1="1488" y2="2256" x1="2224" />
+            <wire x2="2960" y1="1488" y2="1488" x1="2224" />
         </branch>
         <branch name="XLXN_292">
             <wire x2="288" y1="1968" y2="1968" x1="272" />
@@ -851,5 +843,20 @@
         <instance x="400" y="2112" name="U3" orien="R0">
             <attrtext style="fontsize:58;fontname:Arial;textcolor:rgb(255,0,0)" attrname="InstName" x="256" y="108" type="instance" />
         </instance>
+        <branch name="N0">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2928" y="704" type="branch" />
+            <wire x2="2960" y1="704" y2="704" x1="2928" />
+        </branch>
+        <branch name="V5">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2928" y="752" type="branch" />
+            <wire x2="2960" y1="752" y2="752" x1="2928" />
+        </branch>
+        <branch name="Disp_num(31:0)">
+            <wire x2="1840" y1="192" y2="192" x1="1808" />
+            <wire x2="1808" y1="192" y2="544" x1="1808" />
+            <wire x2="3424" y1="544" y2="544" x1="1808" />
+            <wire x2="3424" y1="544" y2="720" x1="3424" />
+            <wire x2="3424" y1="720" y2="720" x1="3408" />
+        </branch>
     </sheet>
 </drawing>
