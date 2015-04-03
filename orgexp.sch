@@ -37,7 +37,7 @@
         <signal name="V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5" />
         <signal name="push_out(0)" />
         <signal name="XLXN_239(31:0)" />
-        <signal name="XLXN_240(31:0)" />
+        <signal name="Ai(31:0)" />
         <signal name="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,SW(1),CPU_CLK,Cout,Zero,clkdiv(27:24)" />
         <signal name="SW(7:5),SW(1:0)" />
         <signal name="push_out(2:0)" />
@@ -271,7 +271,7 @@
             <blockpin signalname="SW(7:5)" name="Test(2:0)" />
             <blockpin signalname="V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5" name="point_in(31:0)" />
             <blockpin signalname="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,blink(3:0),blink(3:0)" name="blink_in(31:0)" />
-            <blockpin name="disp_cpudata(31:0)" />
+            <blockpin signalname="Ai(31:0)" name="disp_cpudata(31:0)" />
             <blockpin signalname="XLXN_239(31:0)" name="Test_data1(31:0)" />
             <blockpin signalname="ALU_out(31:0)" name="Test_data2(31:0)" />
             <blockpin signalname="XLXN_279(31:0)" name="Test_data3(31:0)" />
@@ -320,14 +320,14 @@
             <blockpin signalname="blink(3:0)" name="blink(3:0)" />
             <blockpin name="state(1:0)" />
             <blockpin signalname="SW(7:5),SW(1:0)" name="disp_ctr(4:0)" />
-            <blockpin signalname="XLXN_240(31:0)" name="Ai(31:0)" />
+            <blockpin signalname="Ai(31:0)" name="Ai(31:0)" />
             <blockpin signalname="push_out(2:0)" name="push_out(2:0)" />
             <blockpin signalname="XLXN_239(31:0)" name="Bi(31:0)" />
         </block>
         <block symbolname="ALU_LCDF" name="M8">
             <blockpin signalname="push_out(0)" name="C" />
             <blockpin signalname="SW(4:2)" name="ALU_Ctr(2:0)" />
-            <blockpin signalname="XLXN_240(31:0)" name="Ai(31:0)" />
+            <blockpin signalname="Ai(31:0)" name="Ai(31:0)" />
             <blockpin signalname="XLXN_239(31:0)" name="Bi(31:0)" />
             <blockpin signalname="ALU_out(31:0)" name="ALU_out(31:0)" />
             <blockpin signalname="Cout" name="Cout" />
@@ -665,12 +665,6 @@
             <wire x2="2960" y1="1104" y2="1104" x1="2528" />
             <wire x2="960" y1="1056" y2="1216" x1="960" />
         </branch>
-        <branch name="XLXN_240(31:0)">
-            <wire x2="928" y1="1152" y2="1152" x1="880" />
-            <wire x2="1072" y1="1152" y2="1152" x1="928" />
-            <wire x2="2960" y1="1040" y2="1040" x1="928" />
-            <wire x2="928" y1="1040" y2="1152" x1="928" />
-        </branch>
         <text style="fontsize:38;fontname:Arial;textcolor:rgb(255,0,0)" x="2560" y="1012">Ai BUS</text>
         <text style="fontsize:38;fontname:Arial;textcolor:rgb(255,0,0)" x="2556" y="948">blink BUS</text>
         <branch name="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,SW(1),CPU_CLK,Cout,Zero,clkdiv(27:24)">
@@ -852,11 +846,17 @@
             <wire x2="2960" y1="752" y2="752" x1="2928" />
         </branch>
         <branch name="Disp_num(31:0)">
-            <wire x2="1840" y1="192" y2="192" x1="1808" />
             <wire x2="1808" y1="192" y2="544" x1="1808" />
             <wire x2="3424" y1="544" y2="544" x1="1808" />
             <wire x2="3424" y1="544" y2="720" x1="3424" />
+            <wire x2="1840" y1="192" y2="192" x1="1808" />
             <wire x2="3424" y1="720" y2="720" x1="3408" />
+        </branch>
+        <branch name="Ai(31:0)">
+            <wire x2="928" y1="1152" y2="1152" x1="880" />
+            <wire x2="1072" y1="1152" y2="1152" x1="928" />
+            <wire x2="928" y1="1040" y2="1152" x1="928" />
+            <wire x2="2960" y1="1040" y2="1040" x1="928" />
         </branch>
     </sheet>
 </drawing>

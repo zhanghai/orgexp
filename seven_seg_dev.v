@@ -8,7 +8,7 @@ module seven_seg_dev(
 		input [3:0] pointing,
 		input [3:0] blinking,
 		output [3:0] AN,
-		output [7:0] SEGMENT
+		output [7:0] SEGMENT	// {dp, g, f, e, d, c, b, a}
 		);
 
 	wire dp;	// Dot
@@ -60,10 +60,10 @@ module seven_seg_dev(
 	end
 
 	mux4to1 #(8) mux_temp_seg({
-				disp_num[30], disp_num[3], disp_num[10], disp_num[22], disp_num[31], disp_num[23], disp_num[11], disp_num[15],
-				disp_num[28], disp_num[2], disp_num[8], disp_num[20], disp_num[29], disp_num[21], disp_num[9], disp_num[14],
-				disp_num[26], disp_num[1], disp_num[6], disp_num[18], disp_num[27], disp_num[19], disp_num[7], disp_num[13],
-				disp_num[24], disp_num[0], disp_num[4], disp_num[16], disp_num[25], disp_num[17], disp_num[5], disp_num[12]
+				disp_num[30], disp_num[15], disp_num[11], disp_num[23], disp_num[31], disp_num[22], disp_num[10], disp_num[3],
+				disp_num[28], disp_num[14], disp_num[9], disp_num[21], disp_num[29], disp_num[20], disp_num[8], disp_num[2],
+				disp_num[26], disp_num[13], disp_num[7], disp_num[19], disp_num[27], disp_num[18], disp_num[6], disp_num[1],
+				disp_num[24], disp_num[12], disp_num[5], disp_num[17], disp_num[25], disp_num[16], disp_num[4], disp_num[0]
 			}, Scanning, temp_seg);
 
 	// Digit select: ANcode
