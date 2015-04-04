@@ -1,0 +1,9 @@
+*
+!.gitignore
+!ipcore_dir
+!*.md
+!*.sch
+!*.sym
+!*.ucf
+!*.v
+!*.xise
