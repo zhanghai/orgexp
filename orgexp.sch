@@ -15,7 +15,7 @@
         <signal name="SW_OK(1:0)" />
         <signal name="CPU_CLK" />
         <signal name="SW_OK(2)" />
-        <signal name="PC(11:2)" />
+        <signal name="pc(11:2)" />
         <signal name="clka" />
         <signal name="wea" />
         <signal name="Disp_num(31:0)" />
@@ -32,7 +32,7 @@
         <signal name="SEGMENT(5)" />
         <signal name="SEGMENT(6)" />
         <signal name="XLXN_357(3:0)" />
-        <signal name="N0,N0,PC(31:2)" />
+        <signal name="N0,N0,pc(31:2)" />
         <signal name="clkdiv(19:18)" />
         <signal name="SW_OK(7:0)" />
         <signal name="button_out(3)" />
@@ -42,7 +42,7 @@
         <signal name="counter2_out" />
         <signal name="Data_in(31:0)" />
         <signal name="ram_din(31:0)" />
-        <signal name="PC(31:0)" />
+        <signal name="pc(31:0)" />
         <signal name="addra(9:0)" />
         <signal name="Addr_out(31:0)" />
         <signal name="Data_out(31:0)" />
@@ -291,13 +291,13 @@
             <blockpin signalname="V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5" name="point_in(31:0)" />
             <blockpin signalname="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,blink(3:0),blink(3:0)" name="blink_in(31:0)" />
             <blockpin signalname="counter_val(31:0)" name="disp_cpudata(31:0)" />
-            <blockpin signalname="N0,N0,PC(31:2)" name="Test_data1(31:0)" />
+            <blockpin signalname="N0,N0,pc(31:2)" name="Test_data1(31:0)" />
             <blockpin signalname="counter_out(31:0)" name="Test_data2(31:0)" />
             <blockpin signalname="rom_dout(31:0)" name="Test_data3(31:0)" />
             <blockpin signalname="Addr_out(31:0)" name="Test_data4(31:0)" />
             <blockpin signalname="Addr_out(31:0)" name="Test_data5(31:0)" />
             <blockpin signalname="Data_in(31:0)" name="Test_data6(31:0)" />
-            <blockpin signalname="PC(31:0)" name="Test_data7(31:0)" />
+            <blockpin signalname="pc(31:0)" name="Test_data7(31:0)" />
             <blockpin signalname="XLXN_357(3:0)" name="blink_out(3:0)" />
             <blockpin signalname="XLXN_341(3:0)" name="point_out(3:0)" />
             <blockpin signalname="button_out(3)" name="rst" />
@@ -315,7 +315,7 @@
             <blockpin signalname="AN(3:0)" name="AN(3:0)" />
         </block>
         <block symbolname="ROM_B" name="U2">
-            <blockpin signalname="PC(11:2)" name="addra(9:0)" />
+            <blockpin signalname="pc(11:2)" name="addra(9:0)" />
             <blockpin signalname="clka" name="clka" />
             <blockpin signalname="rom_dout(31:0)" name="douta(31:0)" />
         </block>
@@ -380,7 +380,7 @@
             <blockpin signalname="Data_in(31:0)" name="Data_in(31:0)" />
             <blockpin name="CPU_MIO" />
             <blockpin signalname="mem_w" name="mem_w" />
-            <blockpin signalname="PC(31:0)" name="PC_out(31:0)" />
+            <blockpin signalname="pc(31:0)" name="PC_out(31:0)" />
             <blockpin signalname="Addr_out(31:0)" name="Addr_out(31:0)" />
             <blockpin signalname="Data_out(31:0)" name="Data_out(31:0)" />
         </block>
@@ -730,7 +730,7 @@
         <instance x="576" y="1824" name="U2" orien="R0">
             <attrtext style="fontsize:58;fontname:Arial;textcolor:rgb(255,0,0)" attrname="InstName" x="256" y="120" type="instance" />
         </instance>
-        <branch name="PC(11:2)">
+        <branch name="pc(11:2)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="432" y="1904" type="branch" />
             <wire x2="432" y1="1904" y2="1904" x1="352" />
             <wire x2="576" y1="1904" y2="1904" x1="432" />
@@ -796,7 +796,7 @@
         </branch>
         <instance x="208" y="2128" name="XLXI_4" orien="R0" />
         <bustap x2="352" y1="1904" y2="1904" x1="256" />
-        <branch name="PC(31:0)">
+        <branch name="pc(31:0)">
             <wire x2="1216" y1="688" y2="688" x1="256" />
             <wire x2="1216" y1="688" y2="1104" x1="1216" />
             <wire x2="2640" y1="688" y2="688" x1="1216" />
@@ -894,7 +894,7 @@
             <wire x2="2448" y1="1232" y2="1616" x1="2448" />
             <wire x2="2864" y1="1232" y2="1232" x1="2448" />
         </branch>
-        <branch name="N0,N0,PC(31:2)">
+        <branch name="N0,N0,pc(31:2)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3408" y="1014" type="branch" />
             <wire x2="3408" y1="672" y2="672" x1="2848" />
             <wire x2="3408" y1="672" y2="1120" x1="3408" />

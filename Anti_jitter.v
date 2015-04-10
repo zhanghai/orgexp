@@ -33,5 +33,4 @@ module Anti_jitter(
 			end
 		end
 	end
-
 endmodule

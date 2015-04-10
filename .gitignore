@@ -3,7 +3,7 @@
 !ipcore_dir
 !*.md
 !*.ngc
-!*.ngr
+orgexp.ngc
 !*.sch
 !*.sym
 !*.ucf
