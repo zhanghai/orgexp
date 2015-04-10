@@ -14,5 +14,4 @@ module Counter_x(
 		output counter2_OUT,
 		output [31:0] counter_out
 		);
-
 endmodule

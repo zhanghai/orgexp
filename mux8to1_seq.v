@@ -10,7 +10,7 @@ module mux8to1_seq(
 	);
 
 	parameter WIDTH = 1;
-	
+
 	always @(posedge clock or posedge reset) begin
 		if (reset) begin
 			out <= in_reset;
