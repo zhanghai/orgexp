@@ -2,6 +2,8 @@
 !.gitignore
 !ipcore_dir
 !*.md
+!*.ngc
+!*.ngr
 !*.sch
 !*.sym
 !*.ucf

@@ -15,7 +15,7 @@
         <signal name="SW_OK(1:0)" />
         <signal name="CPU_CLK" />
         <signal name="SW_OK(2)" />
-        <signal name="pc(11:2)" />
+        <signal name="PC(11:2)" />
         <signal name="clka" />
         <signal name="wea" />
         <signal name="Disp_num(31:0)" />
@@ -42,7 +42,7 @@
         <signal name="counter2_out" />
         <signal name="Data_in(31:0)" />
         <signal name="ram_din(31:0)" />
-        <signal name="pc(31:0)" />
+        <signal name="PC(31:0)" />
         <signal name="addra(9:0)" />
         <signal name="Addr_out(31:0)" />
         <signal name="Data_out(31:0)" />
@@ -51,17 +51,18 @@
         <signal name="counter_out(31:0)" />
         <signal name="GPIOe0000000_we" />
         <signal name="counter_we" />
-        <signal name="XLXN_436(31:0)" />
-        <signal name="XLXN_437(31:0)" />
-        <signal name="SW_OK(7:5)" />
+        <signal name="V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5" />
+        <signal name="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,blink(3:0),blink(3:0)" />
         <signal name="XLXN_442" />
-        <signal name="counter_ch(31:0)" />
+        <signal name="counter_ch(1:0)" />
         <signal name="clkdiv(10)" />
         <signal name="clkdiv(7)" />
         <signal name="N0" />
         <signal name="counter_val(31:0)" />
         <signal name="XLXN_485" />
         <signal name="V5" />
+        <signal name="button_out(3:0)" />
+        <signal name="SW_OK(7:5)" />
         <port polarity="Input" name="clk_50mhz" />
         <port polarity="Input" name="BTN(3:0)" />
         <port polarity="Input" name="SW(7:0)" />
@@ -287,8 +288,8 @@
         <block symbolname="seven_seg_Dev_IO" name="U5">
             <blockpin signalname="XLXN_442" name="clk" />
             <blockpin signalname="SW_OK(7:5)" name="Test(2:0)" />
-            <blockpin signalname="XLXN_436(31:0)" name="point_in(31:0)" />
-            <blockpin signalname="XLXN_437(31:0)" name="blink_in(31:0)" />
+            <blockpin signalname="V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5" name="point_in(31:0)" />
+            <blockpin signalname="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,blink(3:0),blink(3:0)" name="blink_in(31:0)" />
             <blockpin signalname="counter_val(31:0)" name="disp_cpudata(31:0)" />
             <blockpin signalname="N0,N0,PC(31:2)" name="Test_data1(31:0)" />
             <blockpin signalname="counter_out(31:0)" name="Test_data2(31:0)" />
@@ -296,7 +297,7 @@
             <blockpin signalname="Addr_out(31:0)" name="Test_data4(31:0)" />
             <blockpin signalname="Addr_out(31:0)" name="Test_data5(31:0)" />
             <blockpin signalname="Data_in(31:0)" name="Test_data6(31:0)" />
-            <blockpin signalname="pc(31:0)" name="Test_data7(31:0)" />
+            <blockpin signalname="PC(31:0)" name="Test_data7(31:0)" />
             <blockpin signalname="XLXN_357(3:0)" name="blink_out(3:0)" />
             <blockpin signalname="XLXN_341(3:0)" name="point_out(3:0)" />
             <blockpin signalname="button_out(3)" name="rst" />
@@ -314,7 +315,7 @@
             <blockpin signalname="AN(3:0)" name="AN(3:0)" />
         </block>
         <block symbolname="ROM_B" name="U2">
-            <blockpin signalname="pc(11:2)" name="addra(9:0)" />
+            <blockpin signalname="PC(11:2)" name="addra(9:0)" />
             <blockpin signalname="clka" name="clka" />
             <blockpin signalname="rom_dout(31:0)" name="douta(31:0)" />
         </block>
@@ -332,7 +333,7 @@
         <block symbolname="Anti_jitter" name="U9">
             <blockpin signalname="clk_50mhz" name="clk" />
             <blockpin signalname="SW(7:0)" name="SW(7:0)" />
-            <blockpin signalname="button_out(3)" name="button_out(3:0)" />
+            <blockpin signalname="button_out(3:0)" name="button_out(3:0)" />
             <blockpin signalname="SW_OK(7:0)" name="SW_OK(7:0)" />
             <blockpin name="button_pulse(3:0)" />
             <blockpin signalname="BTN(3:0)" name="button(3:0)" />
@@ -354,7 +355,7 @@
             <blockpin signalname="counter0_out" name="counter0_out" />
             <blockpin signalname="counter1_out" name="counter1_out" />
             <blockpin signalname="counter2_out" name="counter2_out" />
-            <blockpin signalname="button_out(3)" name="BTN(3:0)" />
+            <blockpin signalname="button_out(3:0)" name="BTN(3:0)" />
             <blockpin signalname="SW_OK(7:0)" name="SW(7:0)" />
             <blockpin signalname="ram_data(31:0)" name="ram_data_out(31:0)" />
             <blockpin signalname="LED(7:0)" name="led_out(7:0)" />
@@ -379,7 +380,7 @@
             <blockpin signalname="Data_in(31:0)" name="Data_in(31:0)" />
             <blockpin name="CPU_MIO" />
             <blockpin signalname="mem_w" name="mem_w" />
-            <blockpin signalname="pc(31:0)" name="PC_out(31:0)" />
+            <blockpin signalname="PC(31:0)" name="PC_out(31:0)" />
             <blockpin signalname="Addr_out(31:0)" name="Addr_out(31:0)" />
             <blockpin signalname="Data_out(31:0)" name="Data_out(31:0)" />
         </block>
@@ -395,7 +396,7 @@
             <blockpin signalname="clkdiv(10)" name="clk2" />
             <blockpin signalname="counter_we" name="counter_we" />
             <blockpin signalname="counter_val(31:0)" name="counter_val(31:0)" />
-            <blockpin signalname="counter_ch(31:0)" name="counter_ch(1:0)" />
+            <blockpin signalname="counter_ch(1:0)" name="counter_ch(1:0)" />
             <blockpin signalname="counter0_out" name="counter0_OUT" />
             <blockpin signalname="counter1_out" name="counter1_OUT" />
             <blockpin signalname="counter2_out" name="counter2_OUT" />
@@ -409,7 +410,7 @@
             <blockpin signalname="button_out(3)" name="rst" />
             <blockpin signalname="XLXN_485" name="GPIOf0000000_we" />
             <blockpin signalname="counter_val(31:0)" name="Peripheral_in(31:0)" />
-            <blockpin signalname="counter_ch(31:0)" name="counter_set(1:0)" />
+            <blockpin signalname="counter_ch(1:0)" name="counter_set(1:0)" />
             <blockpin signalname="LED(7:0)" name="led_out(7:0)" />
             <blockpin name="GPIOf0(21:0)" />
         </block>
@@ -449,9 +450,9 @@
         <circle style="fillcolor:rgb(255,0,0);fillstyle:Solid" r="45" cx="571" cy="171" />
         <circle style="fillcolor:rgb(0,0,0);fillstyle:Solid" r="18" cx="570" cy="170" />
         <branch name="clkdiv(24)">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1757" y="144" type="branch" />
-            <wire x2="1760" y1="144" y2="144" x1="1664" />
-            <wire x2="1808" y1="144" y2="144" x1="1760" />
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="1792" y="144" type="branch" />
+            <wire x2="1792" y1="144" y2="144" x1="1664" />
+            <wire x2="1808" y1="144" y2="144" x1="1792" />
         </branch>
         <branch name="XLXN_341(3:0)">
             <wire x2="2352" y1="192" y2="192" x1="2272" />
@@ -637,7 +638,7 @@
         </branch>
         <bustap x2="1600" y1="272" y2="272" x1="1504" />
         <branch name="clkdiv(19:18)">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1683" y="352" type="branch" />
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="1680" y="352" type="branch" />
             <wire x2="1680" y1="352" y2="352" x1="1664" />
             <wire x2="1696" y1="352" y2="352" x1="1680" />
             <wire x2="1696" y1="336" y2="352" x1="1696" />
@@ -645,11 +646,6 @@
         </branch>
         <bustap x2="1664" y1="352" y2="352" x1="1568" />
         <bustap x2="1552" y1="192" y2="192" x1="1456" />
-        <branch name="button_out(3)">
-            <wire x2="1456" y1="192" y2="192" x1="1392" />
-            <wire x2="1456" y1="192" y2="1184" x1="1456" />
-            <wire x2="1760" y1="1184" y2="1184" x1="1456" />
-        </branch>
         <bustap x2="1408" y1="384" y2="384" x1="1504" />
         <branch name="SW_OK(2)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="1344" y="384" type="branch" />
@@ -734,7 +730,7 @@
         <instance x="576" y="1824" name="U2" orien="R0">
             <attrtext style="fontsize:58;fontname:Arial;textcolor:rgb(255,0,0)" attrname="InstName" x="256" y="120" type="instance" />
         </instance>
-        <branch name="pc(11:2)">
+        <branch name="PC(11:2)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="432" y="1904" type="branch" />
             <wire x2="432" y1="1904" y2="1904" x1="352" />
             <wire x2="576" y1="1904" y2="1904" x1="432" />
@@ -800,7 +796,7 @@
         </branch>
         <instance x="208" y="2128" name="XLXI_4" orien="R0" />
         <bustap x2="352" y1="1904" y2="1904" x1="256" />
-        <branch name="pc(31:0)">
+        <branch name="PC(31:0)">
             <wire x2="1216" y1="688" y2="688" x1="256" />
             <wire x2="1216" y1="688" y2="1104" x1="1216" />
             <wire x2="2640" y1="688" y2="688" x1="1216" />
@@ -861,7 +857,7 @@
         <instance x="1776" y="2400" name="U10" orien="R0">
             <attrtext style="fontsize:58;fontname:Arial" attrname="InstName" x="160" y="-464" type="instance" />
         </instance>
-        <branch name="counter_ch(31:0)">
+        <branch name="counter_ch(1:0)">
             <wire x2="1776" y1="2368" y2="2368" x1="1744" />
             <wire x2="1744" y1="2368" y2="2416" x1="1744" />
             <wire x2="2448" y1="2416" y2="2416" x1="1744" />
@@ -872,9 +868,9 @@
         </branch>
         <bustap x2="1664" y1="2144" y2="2144" x1="1568" />
         <branch name="clkdiv(10)">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1688" y="2144" type="branch" />
-            <wire x2="1696" y1="2144" y2="2144" x1="1664" />
-            <wire x2="1712" y1="2144" y2="2144" x1="1696" />
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="1680" y="2144" type="branch" />
+            <wire x2="1680" y1="2144" y2="2144" x1="1664" />
+            <wire x2="1712" y1="2144" y2="2144" x1="1680" />
             <wire x2="1712" y1="2144" y2="2176" x1="1712" />
             <wire x2="1776" y1="2176" y2="2176" x1="1712" />
             <wire x2="1712" y1="2112" y2="2144" x1="1712" />
@@ -887,11 +883,6 @@
             <wire x2="1776" y1="2048" y2="2048" x1="1680" />
         </branch>
         <instance x="3344" y="1376" name="XST_GND" orien="R0" />
-        <branch name="SW_OK(7:5)">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="2807" y="912" type="branch" />
-            <wire x2="2800" y1="912" y2="912" x1="2784" />
-            <wire x2="2864" y1="912" y2="912" x1="2800" />
-        </branch>
         <branch name="counter_out(31:0)">
             <wire x2="1760" y1="1568" y2="1568" x1="1744" />
             <wire x2="1744" y1="1568" y2="1616" x1="1744" />
@@ -906,8 +897,7 @@
         <branch name="N0,N0,PC(31:2)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3408" y="1014" type="branch" />
             <wire x2="3408" y1="672" y2="672" x1="2848" />
-            <wire x2="3408" y1="672" y2="1008" x1="3408" />
-            <wire x2="3408" y1="1008" y2="1120" x1="3408" />
+            <wire x2="3408" y1="672" y2="1120" x1="3408" />
             <wire x2="2848" y1="672" y2="1168" x1="2848" />
             <wire x2="2864" y1="1168" y2="1168" x1="2848" />
         </branch>
@@ -919,10 +909,10 @@
         <instance x="2864" y="1584" name="U5" orien="R0">
             <attrtext style="fontsize:58;fontname:Arial;textcolor:rgb(255,0,0)" attrname="InstName" x="144" y="-848" type="instance" />
         </instance>
-        <branch name="XLXN_437(31:0)">
+        <branch name="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,blink(3:0),blink(3:0)">
             <wire x2="2864" y1="1040" y2="1040" x1="2800" />
         </branch>
-        <branch name="XLXN_436(31:0)">
+        <branch name="V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5,V5">
             <wire x2="2864" y1="976" y2="976" x1="2768" />
         </branch>
         <bustap x2="3408" y1="1120" y2="1216" x1="3408" />
@@ -968,8 +958,7 @@
             <wire x2="1760" y1="1504" y2="1504" x1="1728" />
             <wire x2="1728" y1="1504" y2="1648" x1="1728" />
             <wire x2="3296" y1="1648" y2="1648" x1="1728" />
-            <wire x2="3296" y1="1648" y2="1952" x1="3296" />
-            <wire x2="3296" y1="1952" y2="1968" x1="3296" />
+            <wire x2="3296" y1="1648" y2="1968" x1="3296" />
             <wire x2="3296" y1="1968" y2="2496" x1="3296" />
             <wire x2="3360" y1="2496" y2="2496" x1="3296" />
             <wire x2="3296" y1="1968" y2="1968" x1="3232" />
@@ -989,5 +978,15 @@
         </branch>
         <text style="fontsize:38;fontname:Arial;textcolor:rgb(255,0,0)" x="832" y="152">V5</text>
         <text style="fontsize:58;fontname:Arial" x="3376" y="1612">LED </text>
+        <branch name="button_out(3:0)">
+            <wire x2="1456" y1="192" y2="192" x1="1392" />
+            <wire x2="1456" y1="192" y2="1184" x1="1456" />
+            <wire x2="1760" y1="1184" y2="1184" x1="1456" />
+        </branch>
+        <branch name="SW_OK(7:5)">
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2800" y="912" type="branch" />
+            <wire x2="2800" y1="912" y2="912" x1="2784" />
+            <wire x2="2864" y1="912" y2="912" x1="2800" />
+        </branch>
     </sheet>
 </drawing>
