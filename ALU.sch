@@ -48,7 +48,7 @@
             <line x2="228" y1="-64" y2="-64" style="linewidth:W" x1="256" />
         </blockdef>
         <blockdef name="adc_32">
-            <timestamp>2015-4-10T13:19:16</timestamp>
+            <timestamp>2015-4-11T3:18:57</timestamp>
             <line x2="48" y1="-256" y2="-256" style="linewidth:W" x1="64" />
             <line x2="48" y1="-128" y2="-128" style="linewidth:W" x1="64" />
             <line x2="64" y1="-224" y2="-300" x1="64" />
@@ -172,8 +172,8 @@
             <blockpin signalname="XLXN_8(31:0)" name="B(31:0)" />
             <blockpin signalname="A(31:0)" name="A(31:0)" />
             <blockpin signalname="ALU_operation(2)" name="C0" />
-            <blockpin signalname="overflow" name="OF" />
-            <blockpin signalname="S(31:0)" name="S(31:0)" />
+            <blockpin signalname="overflow" name="overflow" />
+            <blockpin signalname="S(31:0)" name="S(32:0)" />
         </block>
         <block symbolname="xor_32" name="XLXI_17">
             <blockpin signalname="A(31:0)" name="A(31:0)" />

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="adc_32">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2015-4-10T13:19:16</timestamp>
+    <timestamp>2015-4-11T3:18:57</timestamp>
     <pin polarity="Input" x="48" y="-128" name="B(31:0)" />
     <pin polarity="Input" x="48" y="-256" name="A(31:0)" />
     <pin polarity="Input" x="128" y="-304" name="C0" />
-    <pin polarity="Output" x="240" y="-176" name="OF" />
-    <pin polarity="Output" x="240" y="-208" name="S(31:0)" />
+    <pin polarity="Output" x="240" y="-176" name="overflow" />
+    <pin polarity="Output" x="240" y="-208" name="S(32:0)" />
     <graph>
         <line x2="48" y1="-256" y2="-256" style="linewidth:W" x1="64" />
         <line x2="48" y1="-128" y2="-128" style="linewidth:W" x1="64" />
@@ -22,9 +22,9 @@
         <line x2="128" y1="-304" y2="-272" x1="128" />
         <attrtext style="alignment:RIGHT;fontsize:10;fontname:Arial" attrname="PinName" x="132" y="-264" type="pin C0" />
         <attrtext attrname="PinName" x="68" y="-252" type="pin A(31:0)" />
-        <attrtext style="alignment:RIGHT" attrname="PinName" x="216" y="-176" type="pin OF" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="216" y="-176" type="pin overflow" />
         <line x2="240" y1="-208" y2="-208" style="linewidth:W" x1="224" />
-        <attrtext style="alignment:RIGHT" attrname="PinName" x="220" y="-208" type="pin S(31:0)" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="220" y="-208" type="pin S(32:0)" />
         <line x2="240" y1="-176" y2="-176" style="linewidth:W" x1="224" />
     </graph>
 </symbol>

@@ -4,10 +4,11 @@ module adc_32(
 		input [31:0] A,
 		input [31:0] B,
 		input C0,
-		output [31:0] S,
-		output OF
+		output [32:0] S,
+		output overflow
 		);
-	wire Cout;
-	assign {Cout, S} = C0 ? A - B : A + B;
-	assign OF = Cout ^ S[31];
+	assign S = C0 ? A - B : A + B;
+	assign overflow = C0 ?
+			(A[31] != B[31]) && (S[31] == B[31]) :
+			(A[31] == B[31]) && (S[31] != B[31]);
 endmodule
