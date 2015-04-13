@@ -1,3 +1,5 @@
 *
 !.gitignore
 !*.coe
+!*.xco
+!*.xise
