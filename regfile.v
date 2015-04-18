@@ -1,16 +1,16 @@
 `timescale 1ns / 1ps
 
 module regfile(
-   input clk,
-   input rst,
-   input we,
-   input [4:0] reg_Rs_addr_A,
-   input [4:0] reg_Rt_addr_B,
-   input [4:0] reg_Wt_addr,
-   input [31:0] wdata,
-   output [31:0] rdata_A,
-   output [31:0] rdata_B
-   );
+	input clk,
+	input rst,
+	input we,
+	input [4:0] reg_Rs_addr_A,
+	input [4:0] reg_Rt_addr_B,
+	input [4:0] reg_Wt_addr,
+	input [31:0] wdata,
+	output [31:0] rdata_A,
+	output [31:0] rdata_B
+	);
 
 	reg [31:0] register [1:31];
 

@@ -3,7 +3,7 @@
 module or_32(
 		input [31:0] A,
 		input [31:0] B,
-		output [31:0] S
+		output [31:0] res
 		);
-	assign S = A | B;
+	assign res = A | B;
 endmodule

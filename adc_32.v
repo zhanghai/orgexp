@@ -7,8 +7,6 @@ module adc_32(
 		output [32:0] S,
 		output overflow
 		);
-	assign S = C0 ? A - B : A + B;
-	assign overflow = C0 ?
-			(A[31] != B[31]) && (S[31] == B[31]) :
-			(A[31] == B[31]) && (S[31] != B[31]);
+	assign S = {1'b0, A} + {C0, B} + C0;
+	assign overflow = S[32];
 endmodule

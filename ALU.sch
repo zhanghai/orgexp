@@ -23,6 +23,7 @@
         <signal name="res(31:0)" />
         <signal name="zero" />
         <signal name="overflow" />
+        <signal name="S(32:0)" />
         <port polarity="Input" name="ALU_operation(2:0)" />
         <port polarity="Input" name="A(31:0)" />
         <port polarity="Input" name="B(31:0)" />
@@ -48,7 +49,7 @@
             <line x2="228" y1="-64" y2="-64" style="linewidth:W" x1="256" />
         </blockdef>
         <blockdef name="adc_32">
-            <timestamp>2015-4-11T3:18:57</timestamp>
+            <timestamp>2015-4-11T7:50:8</timestamp>
             <line x2="48" y1="-256" y2="-256" style="linewidth:W" x1="64" />
             <line x2="48" y1="-128" y2="-128" style="linewidth:W" x1="64" />
             <line x2="64" y1="-224" y2="-300" x1="64" />
@@ -135,7 +136,7 @@
             <rect width="64" x="0" y="-140" height="24" />
             <line x2="0" y1="-128" y2="-128" x1="64" />
         </blockdef>
-        <blockdef name="or_bit_32">
+        <blockdef name="nor_bit_32">
             <timestamp>2015-4-10T5:41:47</timestamp>
             <rect width="220" x="64" y="-104" height="112" />
             <line x2="32" y1="-48" y2="-48" style="linewidth:W" x1="64" />
@@ -173,7 +174,7 @@
             <blockpin signalname="A(31:0)" name="A(31:0)" />
             <blockpin signalname="ALU_operation(2)" name="C0" />
             <blockpin signalname="overflow" name="overflow" />
-            <blockpin signalname="S(31:0)" name="S(32:0)" />
+            <blockpin signalname="S(32:0)" name="S(32:0)" />
         </block>
         <block symbolname="xor_32" name="XLXI_17">
             <blockpin signalname="A(31:0)" name="A(31:0)" />
@@ -202,7 +203,7 @@
             <blockpin signalname="S(31:0)" name="x6(31:0)" />
             <blockpin signalname="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,S(32)" name="x7(31:0)" />
         </block>
-        <block symbolname="or_bit_32" name="XLXI_21">
+        <block symbolname="nor_bit_32" name="XLXI_21">
             <blockpin signalname="zero" name="o" />
             <blockpin signalname="res(31:0)" name="A(31:0)" />
         </block>
@@ -343,12 +344,15 @@
         <instance x="1168" y="912" name="XLXI_22" orien="R0" />
         <iomarker fontsize="28" x="1632" y="336" name="res(31:0)" orien="R0" />
         <branch name="S(31:0)">
-            <wire x2="896" y1="464" y2="464" x1="784" />
             <wire x2="896" y1="464" y2="480" x1="896" />
             <wire x2="928" y1="480" y2="480" x1="896" />
             <wire x2="1088" y1="480" y2="480" x1="928" />
             <wire x2="1088" y1="288" y2="288" x1="928" />
             <wire x2="928" y1="288" y2="480" x1="928" />
+        </branch>
+        <bustap x2="896" y1="464" y2="464" x1="800" />
+        <branch name="S(32:0)">
+            <wire x2="800" y1="464" y2="464" x1="784" />
         </branch>
     </sheet>
 </drawing>
