@@ -13,5 +13,4 @@ module mux4to1(
 			select == 2'b01 ? in[2 * WIDTH - 1: WIDTH] :
 			select == 2'b10 ? in[3 * WIDTH - 1: 2 * WIDTH] :
 			in[4 * WIDTH - 1: 3 * WIDTH];
-
 endmodule

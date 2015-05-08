@@ -150,48 +150,48 @@
             <line x2="92" y1="-16" y2="-16" x1="132" />
             <line x2="304" y1="-48" y2="-48" x1="284" />
         </blockdef>
-        <block symbolname="SignalExt_32" name="XLXI_12">
+        <block symbolname="SignalExt_32" name="Signal1_32">
             <blockpin signalname="B_Ctrl(31:0)" name="So(31:0)" />
             <blockpin signalname="ALU_operation(2)" name="S" />
         </block>
-        <block symbolname="xor_32" name="XLXI_13">
+        <block symbolname="xor_32" name="ALU_U7">
             <blockpin signalname="B_Ctrl(31:0)" name="A(31:0)" />
             <blockpin signalname="B(31:0)" name="B(31:0)" />
             <blockpin signalname="XLXN_8(31:0)" name="res(31:0)" />
         </block>
-        <block symbolname="and_32" name="XLXI_14">
+        <block symbolname="and_32" name="ALU_U1">
             <blockpin signalname="XLXN_12(31:0)" name="res(31:0)" />
             <blockpin signalname="A(31:0)" name="A(31:0)" />
             <blockpin signalname="B(31:0)" name="B(31:0)" />
         </block>
-        <block symbolname="or_32" name="XLXI_15">
+        <block symbolname="or_32" name="ALU_U2">
             <blockpin signalname="XLXN_13(31:0)" name="res(31:0)" />
             <blockpin signalname="A(31:0)" name="A(31:0)" />
             <blockpin signalname="B(31:0)" name="B(31:0)" />
         </block>
-        <block symbolname="adc_32" name="XLXI_16">
+        <block symbolname="adc_32" name="ALU_ADC">
             <blockpin signalname="XLXN_8(31:0)" name="B(31:0)" />
             <blockpin signalname="A(31:0)" name="A(31:0)" />
             <blockpin signalname="ALU_operation(2)" name="C0" />
             <blockpin signalname="overflow" name="overflow" />
             <blockpin signalname="S(32:0)" name="S(32:0)" />
         </block>
-        <block symbolname="xor_32" name="XLXI_17">
+        <block symbolname="xor_32" name="ALU_U3">
             <blockpin signalname="A(31:0)" name="A(31:0)" />
             <blockpin signalname="B(31:0)" name="B(31:0)" />
             <blockpin signalname="XLXN_17(31:0)" name="res(31:0)" />
         </block>
-        <block symbolname="nor_32" name="XLXI_18">
+        <block symbolname="nor_32" name="ALU_U4">
             <blockpin signalname="XLXN_18(31:0)" name="res(31:0)" />
             <blockpin signalname="A(31:0)" name="A(31:0)" />
             <blockpin signalname="B(31:0)" name="B(31:0)" />
         </block>
-        <block symbolname="srl_32" name="XLXI_19">
+        <block symbolname="srl_32" name="ALU_U5">
             <blockpin signalname="A(31:0)" name="A(31:0)" />
             <blockpin signalname="B(31:0)" name="B(31:0)" />
             <blockpin signalname="XLXN_19(31:0)" name="res(31:0)" />
         </block>
-        <block symbolname="mux8to1_32" name="XLXI_20">
+        <block symbolname="mux8to1_32" name="ALU_MUX">
             <blockpin signalname="XLXN_13(31:0)" name="x1(31:0)" />
             <blockpin signalname="ALU_operation(2:0)" name="sel(2:0)" />
             <blockpin signalname="res(31:0)" name="o(31:0)" />
@@ -203,7 +203,7 @@
             <blockpin signalname="S(31:0)" name="x6(31:0)" />
             <blockpin signalname="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,S(32)" name="x7(31:0)" />
         </block>
-        <block symbolname="nor_bit_32" name="XLXI_21">
+        <block symbolname="nor_bit_32" name="ALU_Zero">
             <blockpin signalname="zero" name="o" />
             <blockpin signalname="res(31:0)" name="A(31:0)" />
         </block>
@@ -321,25 +321,25 @@
             <wire x2="1568" y1="992" y2="992" x1="928" />
         </branch>
         <iomarker fontsize="28" x="1568" y="992" name="overflow" orien="R0" />
-        <instance x="384" y="304" name="XLXI_12" orien="R180">
+        <instance x="384" y="304" name="Signal1_32" orien="R180">
         </instance>
-        <instance x="160" y="608" name="XLXI_13" orien="R0">
+        <instance x="160" y="608" name="ALU_U7" orien="R0">
         </instance>
-        <instance x="560" y="192" name="XLXI_14" orien="R0">
+        <instance x="560" y="192" name="ALU_U1" orien="R0">
         </instance>
-        <instance x="544" y="304" name="XLXI_15" orien="R0">
+        <instance x="544" y="304" name="ALU_U2" orien="R0">
         </instance>
-        <instance x="544" y="672" name="XLXI_16" orien="R0">
+        <instance x="544" y="672" name="ALU_ADC" orien="R0">
         </instance>
-        <instance x="544" y="736" name="XLXI_17" orien="R0">
+        <instance x="544" y="736" name="ALU_U3" orien="R0">
         </instance>
-        <instance x="544" y="848" name="XLXI_18" orien="R0">
+        <instance x="544" y="848" name="ALU_U4" orien="R0">
         </instance>
-        <instance x="512" y="1008" name="XLXI_19" orien="R0">
+        <instance x="512" y="1008" name="ALU_U5" orien="R0">
         </instance>
-        <instance x="1088" y="656" name="XLXI_20" orien="R0">
+        <instance x="1088" y="656" name="ALU_MUX" orien="R0">
         </instance>
-        <instance x="1296" y="800" name="XLXI_21" orien="R0">
+        <instance x="1296" y="800" name="ALU_Zero" orien="R0">
         </instance>
         <instance x="1168" y="912" name="XLXI_22" orien="R0" />
         <iomarker fontsize="28" x="1632" y="336" name="res(31:0)" orien="R0" />
