@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
 
 module mux8to1(
-	input [8 * WIDTH - 1:0] in,
-	input [2:0] select,
-	output [WIDTH - 1:0] out
-	);
+		input [8 * WIDTH - 1:0] in,
+		input [2:0] select,
+		output [WIDTH - 1:0] out
+		);
 
 	parameter WIDTH = 1;
 

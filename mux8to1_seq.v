@@ -1,13 +1,13 @@
 `timescale 1ns / 1ps
 
 module mux8to1_seq(
-	input clock,
-	input reset,
-	input [WIDTH - 1:0] in_reset,
-	input [8 * WIDTH - 1:0] in,
-	input [2:0] select,
-	output reg [WIDTH - 1:0] out
-	);
+		input clock,
+		input reset,
+		input [WIDTH - 1:0] in_reset,
+		input [8 * WIDTH - 1:0] in,
+		input [2:0] select,
+		output reg [WIDTH - 1:0] out
+		);
 
 	parameter WIDTH = 1;
 
