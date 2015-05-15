@@ -115,7 +115,7 @@
             <line x2="144" y1="-144" y2="-144" x1="64" />
             <line x2="64" y1="-48" y2="-144" x1="64" />
         </blockdef>
-        <blockdef name="alu">
+        <blockdef name="ALU">
             <timestamp>2015-4-18T14:30:17</timestamp>
             <line x2="140" y1="-216" y2="-136" style="linewidth:W;linecolor:rgb(255,0,0)" x1="64" />
             <line x2="140" y1="-72" y2="-136" style="linewidth:W;linecolor:rgb(255,0,0)" x1="64" />
@@ -166,7 +166,7 @@
             <rect width="28" x="64" y="-172" height="84" />
             <line x2="80" y1="-176" y2="-168" x1="80" />
         </blockdef>
-        <block symbolname="Decode_pc_Int" name="XLXI_1">
+        <block symbolname="Decode_pc_Int" name="U3">
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="PC_out(31:0)" name="pc(31:0)" />
             <blockpin signalname="rst" name="reset" />
@@ -207,7 +207,7 @@
             <blockpin signalname="Branch" name="I1" />
             <blockpin signalname="XLXN_20" name="O" />
         </block>
-        <block symbolname="alu" name="U1">
+        <block symbolname="ALU" name="U1">
             <blockpin signalname="XLXN_49" name="zero" />
             <blockpin signalname="ALU_out(31:0)" name="res(31:0)" />
             <blockpin name="overflow" />
@@ -263,7 +263,8 @@
             <wire x2="368" y1="208" y2="800" x1="368" />
             <wire x2="832" y1="800" y2="800" x1="368" />
         </branch>
-        <instance x="576" y="496" name="XLXI_1" orien="R0">
+        <instance x="576" y="496" name="U3" orien="R0">
+            <attrtext style="fontsize:58;fontname:Arial;textcolor:rgb(255,0,0)" attrname="InstName" x="128" y="-212" type="instance" />
         </instance>
         <iomarker fontsize="28" x="80" y="160" name="clk" orien="R180" />
         <iomarker fontsize="28" x="80" y="240" name="rst" orien="R180" />
