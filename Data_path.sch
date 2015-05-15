@@ -14,7 +14,7 @@
         <signal name="Imm_32(29:0),N0,N0" />
         <signal name="PC_out(31:0)" />
         <signal name="V5" />
-        <signal name="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,V5,V5" />
+        <signal name="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,V5,N0,N0" />
         <signal name="pc_4(31:0)" />
         <signal name="Branch_pc(31:0)" />
         <signal name="XLXN_19(31:0)" />
@@ -182,7 +182,7 @@
         </block>
         <block symbolname="add_32" name="XLXI_5">
             <blockpin signalname="PC_out(31:0)" name="a(31:0)" />
-            <blockpin signalname="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,V5,V5" name="b(31:0)" />
+            <blockpin signalname="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,V5,N0,N0" name="b(31:0)" />
             <blockpin signalname="pc_4(31:0)" name="c(31:0)" />
         </block>
         <block symbolname="add_32" name="XLXI_6">
@@ -300,7 +300,7 @@
         <branch name="V5">
             <wire x2="976" y1="352" y2="352" x1="960" />
         </branch>
-        <branch name="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,V5,V5">
+        <branch name="N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,N0,V5,N0,N0">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="1120" y="352" type="branch" />
             <wire x2="1120" y1="352" y2="352" x1="1072" />
             <wire x2="1168" y1="352" y2="352" x1="1120" />
