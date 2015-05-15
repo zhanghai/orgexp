@@ -6,5 +6,5 @@ module mux2to1_32(
 	input sel,
 	output [31:0] o
 	);
-	mux2to1 #(32) mux({b, a}, sel, o);
+	mux2to1_sqs #(32) mux(a, b, sel, o);
 endmodule
