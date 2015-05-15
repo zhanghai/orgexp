@@ -33,7 +33,7 @@
         <signal name="inst_field(25:21)" />
         <signal name="inst_field(20:16)" />
         <signal name="inst_field(15:11)" />
-        <signal name="inst_field(31:0)" />
+        <signal name="inst_field(25:0)" />
         <signal name="Data_in(31:0)" />
         <signal name="RegDst" />
         <signal name="inst_field(15:0)" />
@@ -50,7 +50,7 @@
         <port polarity="Input" name="RegWrite" />
         <port polarity="Output" name="Data_out(31:0)" />
         <port polarity="Input" name="MemtoReg" />
-        <port polarity="Input" name="inst_field(31:0)" />
+        <port polarity="Input" name="inst_field(25:0)" />
         <port polarity="Input" name="Data_in(31:0)" />
         <port polarity="Input" name="RegDst" />
         <port polarity="Output" name="ALU_out(31:0)" />
@@ -438,7 +438,7 @@
         <bustap x2="480" y1="896" y2="896" x1="384" />
         <bustap x2="480" y1="944" y2="944" x1="384" />
         <bustap x2="480" y1="1008" y2="1008" x1="384" />
-        <iomarker fontsize="28" x="240" y="896" name="inst_field(31:0)" orien="R180" />
+        <iomarker fontsize="28" x="240" y="896" name="inst_field(25:0)" orien="R180" />
         <iomarker fontsize="28" x="192" y="1088" name="MemtoReg" orien="R180" />
         <branch name="Data_in(31:0)">
             <wire x2="736" y1="1136" y2="1136" x1="224" />
@@ -449,7 +449,7 @@
             <wire x2="752" y1="832" y2="976" x1="752" />
         </branch>
         <iomarker fontsize="28" x="160" y="832" name="RegDst" orien="R180" />
-        <branch name="inst_field(31:0)">
+        <branch name="inst_field(25:0)">
             <wire x2="304" y1="896" y2="896" x1="240" />
             <wire x2="336" y1="896" y2="896" x1="304" />
             <wire x2="384" y1="896" y2="896" x1="336" />
