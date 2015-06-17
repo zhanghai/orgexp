@@ -10,27 +10,32 @@ module SCPU_ctrl(
 		output reg Jump,
 		output reg Branch,
 		output reg RegWrite,
-		output mem_w,
+		output reg mem_w,
 		output reg [2:0] ALU_Control,
 		output reg CPU_MIO
 		);
 
-	reg MemWrite, MemRead;
 	reg [1:0] ALUop;
-	`define CPU_ctrl_signals {RegDst, ALUSrc_B, MemtoReg, RegWrite, MemRead, MemWrite, Branch, Jump, ALUop}
 	always @(*) begin
+		RegDst = 1;
+		ALUSrc_B = 0;
+		MemtoReg = 0;
+		RegWrite = 0;
+		Branch = 0;
+		Jump = 0;
+		mem_w = 0;
+		CPU_MIO = 0;
+		ALUop = 2'b10;
 		case (OPcode)
-			6'b000000: `CPU_ctrl_signals = {8'b10010000, 2'b10};	// ALU
-			6'b100011: `CPU_ctrl_signals = {8'b01111000, 2'b00};	// lw
-			6'b101011: `CPU_ctrl_signals = {8'bX1X00100, 2'b00};	// sw
-			6'b000100: `CPU_ctrl_signals = {8'bX0X00010, 2'b01};	// beq
-			6'b000010: `CPU_ctrl_signals = {8'bXXX00001, 2'bXX};	// jump
-			6'h24: `CPU_ctrl_signals = {8'b01010000, 2'b11};	// slti, here 6'b100100 according to Sqs, but it should be 6'b001010 according to MIPS 32.
-			default: `CPU_ctrl_signals = {8'bXXX00000, 2'bXX};
+			6'b000000: begin ALUop = 2'b10; RegDst = 1; RegWrite = 1; end	// ALU
+			6'b100011: begin ALUop = 2'b00; RegDst = 0; ALUSrc_B = 1; MemtoReg = 1; RegWrite = 1; end	// lw
+			6'b101011: begin ALUop = 2'b00; mem_w = 1; ALUSrc_B = 1; end	// sw
+			6'b000100: begin ALUop = 2'b01; Branch = 1; end	// beq
+			6'b000010: begin Jump = 1; end	// jump
+			6'h24: begin ALUop=2'b11; RegDst = 0; ALUSrc_B = 1; RegWrite = 1; end	// slti, here 6'b100100 according to Sqs, but it should be 6'b001010 according to MIPS 32.
+			default: begin ALUop=2'b10; end
 		endcase
 	end
-
-	assign mem_w = MemWrite && (!MemRead);
 
 	always @(*) begin
 		case(ALUop)
