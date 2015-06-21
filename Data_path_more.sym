@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<symbol version="7" name="Data_path">
+<symbol version="7" name="Data_path_more">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2014-6-24T3:18:0</timestamp>
-    <attr value="Data_path" name="VeriModel" />
+    <timestamp>2015-6-21T12:6:3</timestamp>
+    <attr value="Data_path_more" name="VeriModel" />
     <pin polarity="Input" x="0" y="-544" name="RegDst" />
     <pin polarity="Input" x="0" y="-480" name="ALUSrc_B" />
-    <pin polarity="Input" x="0" y="-416" name="MemtoReg" />
-    <pin polarity="Input" x="0" y="-352" name="Jump" />
-    <pin polarity="Input" x="0" y="-288" name="Branch" />
+    <pin polarity="Input" x="0" y="-416" name="DatatoReg(1:0)" />
+    <pin polarity="Input" x="0" y="-352" name="Jal" />
+    <pin polarity="Input" x="0" y="-288" name="Branch(1:0)" />
     <pin polarity="Input" x="0" y="-224" name="RegWrite" />
     <pin polarity="Input" x="0" y="-160" name="ALU_Control(2:0)" />
     <pin polarity="Input" x="0" y="-688" name="Data_in(31:0)" />
@@ -17,17 +17,19 @@
     <pin polarity="Output" x="480" y="-688" name="PC_out(31:0)" />
     <pin polarity="Output" x="480" y="-528" name="ALU_out(31:0)" />
     <pin polarity="Output" x="480" y="-400" name="Data_out(31:0)" />
+    <pin polarity="Input" x="480" y="-288" name="zero" />
+    <pin polarity="Input" x="480" y="-224" name="overflow" />
     <graph>
-        <rect style="linewidth:W;linecolor:rgb(0,0,255);fillcolor:rgb(0,255,255)" width="352" x="64" y="-888" height="792" />
+        <rect style="linewidth:W;linecolor:rgb(0,0,255);fillcolor:rgb(0,255,255)" width="352" x="64" y="-860" height="764" />
         <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-544" type="pin RegDst" />
         <line x2="0" y1="-544" y2="-544" x1="64" />
         <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-480" type="pin ALUSrc_B" />
         <line x2="0" y1="-480" y2="-480" x1="64" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-416" type="pin MemtoReg" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-416" type="pin DatatoReg(1:0)" />
         <line x2="0" y1="-416" y2="-416" x1="64" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-352" type="pin Jump" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-352" type="pin Jal" />
         <line x2="0" y1="-352" y2="-352" x1="64" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-288" type="pin Branch" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-288" type="pin Branch(1:0)" />
         <line x2="0" y1="-288" y2="-288" x1="64" />
         <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-224" type="pin RegWrite" />
         <line x2="0" y1="-224" y2="-224" x1="64" />
@@ -53,6 +55,12 @@
         <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="408" y="-400" type="pin Data_out(31:0)" />
         <rect width="64" x="416" y="-412" height="24" />
         <line x2="480" y1="-400" y2="-400" x1="416" />
-        <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial;textcolor:rgb(255,0,0)" attrname="SymbolName" x="264" y="-552" type="symbol" />
+        <rect width="64" x="0" y="-428" height="24" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="392" y="-288" type="pin zero" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="392" y="-224" type="pin overflow" />
+        <line x2="416" y1="-288" y2="-288" x1="480" />
+        <line x2="416" y1="-224" y2="-224" x1="480" />
+        <rect width="64" x="0" y="-300" height="24" />
+        <attrtext style="alignment:BCENTER;fontsize:38;fontname:Arial;textcolor:rgb(255,0,0)" attrname="SymbolName" x="244" y="-300" type="symbol" />
     </graph>
 </symbol>
