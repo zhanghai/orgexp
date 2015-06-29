@@ -75,7 +75,7 @@ module orgexp(
 		.Clk_CPU(Clk_CPU)
 	);
 	assign clk_io = ~Clk_CPU;
-	Muliti_CPU U1 (
+	Multi_CPU U1 (
 		.clk(Clk_CPU),
 		.reset(rst),
 		.inst_out(inst_out[31:0]),
@@ -86,7 +86,8 @@ module orgexp(
 		.PC_out(PC_out[31:0]),
 		.state(),
 		.Addr_out(Addr_out[31:0]),
-		.Data_out(Data_out[31:0])
+		.Data_out(Data_out[31:0]),
+		.CPU_MIO()
 	);
 	assign clk_m = ~clk_50mhz;
 	RAM_B U3 (
