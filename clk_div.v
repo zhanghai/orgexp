@@ -6,5 +6,5 @@ module clk_div(
 		input SW2,
 		output [31:0] clkdiv,
 		output Clk_CPU
-		);
+	);
 endmodule
