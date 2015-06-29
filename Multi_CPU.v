@@ -61,7 +61,7 @@ module Multi_CPU(
 	);
 	assign mem_w = MemWrite && (!MemRead);
 
-	data_path U12(
+	M_datapath U12(
 		.clk(clk),
 		.reset(reset),
 		.MIO_ready(MIO_ready),
@@ -77,11 +77,11 @@ module Multi_CPU(
 		.ALUSrcB(ALUSrcB[1:0]),
 		.PCSource(PCSource[1:0]),
 		.ALU_operation(ALU_operation[2:0]),
-		.data2CPU(Data_in[31:0]),
+		.Data_in(Data_in[31:0]),
 		.zero(zero),
 		.overflow(overflow),
 		.PC_Current(PC_out[31:0]),
-		.Inst_R(inst_out[31:0]),
+		.Inst(inst_out[31:0]),
 		.data_out(Data_out[31:0]),
 		.M_addr(Addr_out[31:0])
 	);
