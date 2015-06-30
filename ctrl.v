@@ -60,6 +60,7 @@ module ctrl(
 	task GoToIF;
 		begin
 			`CPU_ctrl_signals <= 17'h12821;
+			ALU_operation <= ALU_ADD;
 			state <= IF;
 		end
 	endtask
@@ -109,6 +110,7 @@ module ctrl(
 							state <= I_Exe;
 						end
 						6'b001111: begin	// LUI
+							`CPU_ctrl_signals <= 17'h00468;
 							state <= Lui_WB;
 						end
 						6'b100011, 6'b101011: begin	// LW, SW
