@@ -47,7 +47,7 @@ module ctrl(
 			ALU_SUB = 3'b110,
 			ALU_AND = 3'b000,
 			ALU_OR = 3'b001,
-			ALU_SLT = 3'b111,
+			ALU_SLTU = 3'b111,
 			ALU_NOR = 3'b100,
 			ALU_SRL = 3'b101,
 			ALU_XOR = 3'b011;
@@ -64,6 +64,10 @@ module ctrl(
 			state <= IF;
 		end
 	endtask
+
+	initial begin
+		GoToIF;
+	end
 
 	always @(posedge clk or posedge reset) begin
 		if (reset) begin
@@ -92,11 +96,11 @@ module ctrl(
 								6'b100101: begin ALU_operation <= ALU_OR; end
 								6'b100110: begin ALU_operation <= ALU_XOR; end
 								6'b100111: begin ALU_operation <= ALU_NOR; end
-								6'b101010: begin ALU_operation <= ALU_SLT; end
+								6'b101010: begin ALU_operation <= ALU_SLTU; end	// SLT, mocked by SLTU
+								6'b101011: begin ALU_operation <= ALU_SLTU; end	// SLTU
 								6'b000010: begin ALU_operation <= ALU_SRL; end
 								6'b001000: begin	// JR
 									`CPU_ctrl_signals <= 17'h10010;
-									ALU_operation <= ALU_ADD;
 									state <= Jr;
 								end
 								default: begin	// Error
@@ -104,6 +108,7 @@ module ctrl(
 								end
 							endcase
 						end
+//						6'b001000, 6'b001100, 6'b001101, 6'b001110, 6'b001010, 6'b001011: begin	// I type
 						6'b001000, 6'b001100, 6'b001101, 6'b001110, 6'b001010: begin	// I type
 							`CPU_ctrl_signals <= 17'h00050;
 							state <= I_Exe;
@@ -112,7 +117,8 @@ module ctrl(
 								6'b001100: begin ALU_operation <= ALU_AND; end	// ANDI
 								6'b001101: begin ALU_operation <= ALU_OR; end	// ORI
 								6'b001110: begin ALU_operation <= ALU_XOR; end	// XORI
-								6'b001010: begin ALU_operation <= ALU_SLT; end	// SLTI
+								6'b001010: begin ALU_operation <= ALU_SLTU; end	// SLTI, mocked by SLTIU
+								6'b001011: begin ALU_operation <= ALU_SLTU; end	// SLTIU
 								default: begin	// Error
 									GoToIF;
 								end
