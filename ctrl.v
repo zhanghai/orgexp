@@ -96,7 +96,6 @@ module ctrl(
 								6'b100101: begin ALU_operation <= ALU_OR; end
 								6'b100110: begin ALU_operation <= ALU_XOR; end
 								6'b100111: begin ALU_operation <= ALU_NOR; end
-								6'b101010: begin ALU_operation <= ALU_SLTU; end	// SLT, mocked by SLTU
 								6'b101011: begin ALU_operation <= ALU_SLTU; end	// SLTU
 								6'b000010: begin ALU_operation <= ALU_SRL; end
 								6'b001000: begin	// JR
@@ -117,7 +116,6 @@ module ctrl(
 								6'b001100: begin ALU_operation <= ALU_AND; end	// ANDI
 								6'b001101: begin ALU_operation <= ALU_OR; end	// ORI
 								6'b001110: begin ALU_operation <= ALU_XOR; end	// XORI
-								6'b001010: begin ALU_operation <= ALU_SLTU; end	// SLTI, mocked by SLTIU
 								6'b001011: begin ALU_operation <= ALU_SLTU; end	// SLTIU
 								default: begin	// Error
 									GoToIF;
