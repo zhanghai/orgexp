@@ -67,10 +67,9 @@ module ctrl(
 
 	always @(posedge clk or posedge reset) begin
 		if (reset) begin
-			`CPU_ctrl_signals <= 17'h12821;
-			ALU_operation <= ALU_ADD;
-			state <= IF;
+			GoToIF;
 		end else begin
+			ALU_operation <= ALU_ADD;
 			case (state)
 				IF: begin
 					if (MIO_ready) begin
@@ -108,6 +107,16 @@ module ctrl(
 						6'b001000, 6'b001100, 6'b001101, 6'b001110, 6'b001010: begin	// I type
 							`CPU_ctrl_signals <= 17'h00050;
 							state <= I_Exe;
+							case (Inst_in[31:26])
+								6'b001000: begin ALU_operation <= ALU_ADD; end	// ADDI
+								6'b001100: begin ALU_operation <= ALU_AND; end	// ANDI
+								6'b001101: begin ALU_operation <= ALU_OR; end	// ORI
+								6'b001110: begin ALU_operation <= ALU_XOR; end	// XORI
+								6'b001010: begin ALU_operation <= ALU_SLT; end	// SLTI
+								default: begin	// Error
+									GoToIF;
+								end
+							endcase
 						end
 						6'b001111: begin	// LUI
 							`CPU_ctrl_signals <= 17'h00468;
@@ -115,18 +124,19 @@ module ctrl(
 						end
 						6'b100011, 6'b101011: begin	// LW, SW
 							`CPU_ctrl_signals <= 17'h00050;
+							ALU_operation <= ALU_ADD;
 							state <= Mem_Ex;
 						end
 						6'b000100: begin	// BEQ
 							Branch <= 1;
-							ALU_operation <= ALU_SUB;
 							`CPU_ctrl_signals <= 17'h08090;
+							ALU_operation <= ALU_SUB;
 							state <= Beq_Exe;
 						end
-						6'b000100: begin	// BNE
+						6'b000101: begin	// BNE
 							Branch <= 0;
-							ALU_operation <= ALU_SUB;
 							`CPU_ctrl_signals <= 17'h08090;
+							ALU_operation <= ALU_SUB;
 							state <= Bne_Exe;
 						end
 						6'b000010: begin	// J
@@ -145,11 +155,11 @@ module ctrl(
 				Mem_Ex: begin
 					case (Inst_in[31:26])
 						6'b100011: begin	// LW
-							`CPU_ctrl_signals <= 17'h06001;
+							`CPU_ctrl_signals <= 17'h06051;
 							state <= Mem_RD;
 						end
 						6'b101011: begin	// SW
-							`CPU_ctrl_signals <= 17'h05001;
+							`CPU_ctrl_signals <= 17'h05051;
 							state <= Mem_WD;
 						end
 						default: begin	// Error
@@ -162,7 +172,7 @@ module ctrl(
 						`CPU_ctrl_signals <= 17'h00208;
 						state <= LW_WB;
 					end else begin
-						`CPU_ctrl_signals <= 17'h06001;
+						`CPU_ctrl_signals <= 17'h06051;
 						state <= Mem_RD;
 					end
 				end
@@ -173,7 +183,7 @@ module ctrl(
 					if (MIO_ready) begin
 						GoToIF;
 					end else begin
-						`CPU_ctrl_signals <= 17'h05001;
+						`CPU_ctrl_signals <= 17'h05051;
 						state <= Mem_WD;
 					end
 				end
@@ -191,18 +201,8 @@ module ctrl(
 					GoToIF;
 				end
 				I_Exe: begin
-					`CPU_ctrl_signals <= 17'h00050;
+					`CPU_ctrl_signals <= 17'h00058;
 					state <= I_WB;
-					case (Inst_in[31:26])
-						6'b001000: begin ALU_operation <= ALU_ADD; end	// ADDI
-						6'b001100: begin ALU_operation <= ALU_AND; end	// ANDI
-						6'b001101: begin ALU_operation <= ALU_OR; end	// ORI
-						6'b001110: begin ALU_operation <= ALU_XOR; end	// XORI
-						6'b001010: begin ALU_operation <= ALU_SLT; end	// SLTI
-						default: begin	// Error
-							GoToIF;
-						end
-					endcase
 				end
 				I_WB: begin
 					GoToIF;
@@ -226,9 +226,3 @@ module ctrl(
 		end
 	end
 endmodule
-
-/*
-R-Type: jalr, eret*;
-I-Type: addi, andi, ori, xori, slti
-J-Type: ;
-*/
