@@ -1,26 +1,87 @@
 `timescale 1ns / 1ps
 
 module MIO_BUS(
-		input clk,	// 主板时钟
-		input rst,	// 复位，按钮 BTN3
-		input [3:0] BTN,	// 4 位原始按钮输入
-		input [7:0] SW,	// 8 位原始开关输入
-		input mem_w,	// 存储器读写操作，来自 CPU
-		input [31:0] Cpu_data2bus,	// CPU 输出数据总线
-		input [31:0] addr_bus,	// 地址总线，来自 CPU
-		input [31:0] ram_data_out,	// 来自 RAM 数据输出
-		input [7:0] led_out,	// 来自 LED 设备输出
-		input [31:0] counter_out,	// 当前通道计数输出，来自计数器外设
-		input counter0_out,	// 通道 0 计数结束输出，来自计数器外设
-		input counter1_out,	// 通道 1 计数结束输出，来自计数器外设
-		input counter2_out,	// 通道 2 计数结束输出，来自计数器外设
-		output [31:0] Cpu_data4bus,	// CPU 写入数据总线,连接到 CPU
-		output [31:0] ram_data_in,	// RAM 写入数据总线，连接到 RAM
-		output [9:0] ram_addr,	// RAM 访问地址，连接到 RAM
-		output data_ram_we,	// RAM 读写控制，连接到 RAM
-		output GPIOf0000000_we,	// 设备一 LED 写信号
-		output GPIOe0000000_we,	// 设备二 7 段写信号，连接到U5
-		output counter_we,	// 记数器写信号，连接到 U10
-		output [31:0] Peripheral_in	// 外部设备写数据总线,连接所有写设备
-);
+		input clk,	// 
+		input rst,	//  BTN3
+		input [3:0] BTN,	// 4 
+		input [7:0] SW,	// 8 
+		input mem_w,	//  CPU
+		input [31:0] Cpu_data2bus,	// CPU 
+		input [31:0] addr_bus,	//  CPU
+		input [31:0] ram_data_out,	//  RAM 
+		input [7:0] led_out,	//  LED 
+		input [31:0] counter_out,	// 
+		input counter0_out,	//  0 
+		input counter1_out,	//  1 
+		input counter2_out,	//  2 
+		output reg [31:0] Cpu_data4bus,	// CPU , CPU
+		output reg [31:0] ram_data_in,	// RAM  RAM
+		output reg [9:0] ram_addr,	// RAM  RAM
+		output reg data_ram_we,	// RAM  RAM
+		output reg vram_we,
+		output reg [10:0] cpu_vram_addr,
+		output reg [2:0] vram_data_in,
+		output reg GPIOf0000000_we,	//  LED 
+		output reg GPIOe0000000_we,	//  7 U5
+		output reg counter_we,	//  U10
+		output reg [31:0] Peripheral_in	// ,
+	);
+
+	reg data_ram_rd;
+	reg GPIOf0000000_rd;
+	reg GPIOe0000000_rd;
+	reg counter_rd;
+	reg [7:0] led_in;
+
+	always @(*) begin
+
+		data_ram_we=0;
+		data_ram_rd=0;
+		counter_we=0;
+		counter_rd=0;
+		GPIOf0000000_we=0;
+		GPIOe0000000_we=0;
+		GPIOf0000000_rd=0;
+		GPIOe0000000_rd=0;
+		ram_addr=10'h0;
+		ram_data_in=32'h0;
+		Peripheral_in=32'h0;
+		Cpu_data4bus =32'h0;
+
+		case (addr_bus[31:28])
+			4'h0: begin
+				data_ram_we = mem_w;
+				ram_addr = addr_bus[11:2];
+				ram_data_in = Cpu_data2bus;
+				Cpu_data4bus = ram_data_out;
+				data_ram_rd = ~mem_w;
+			end
+			4'he: begin	// 7 segments LEDs
+				GPIOe0000000_we = mem_w;
+				Peripheral_in = Cpu_data2bus;
+				Cpu_data4bus = counter_out;
+				GPIOe0000000_rd = ~mem_w;
+			end
+			4'hf: begin
+				if (addr_bus[2]) begin
+					counter_we = mem_w;
+					Peripheral_in = Cpu_data2bus;
+					Cpu_data4bus = counter_out;
+					counter_rd = ~mem_w;
+				end else begin
+					GPIOf0000000_we = mem_w;
+					Peripheral_in = Cpu_data2bus;
+					Cpu_data4bus = {counter0_out, counter1_out, counter2_out, 9'h00, led_out, BTN, SW};
+					GPIOf0000000_rd = ~mem_w;
+				end
+			end
+		endcase
+
+		casex ({data_ram_rd, GPIOe0000000_rd, counter_rd, GPIOf0000000_rd})
+			4'b1xxx: Cpu_data4bus = ram_data_out;	// read from RAM
+			4'bx1xx: Cpu_data4bus = counter_out;	// read from Counter
+			4'bxx1x: Cpu_data4bus = counter_out;	// read from Counter
+			4'bxxx1: Cpu_data4bus = {counter0_out, counter1_out,  counter2_out, 9'h00, led_out, BTN, SW};	//read from SW & BTN
+		endcase
+	end
 endmodule
