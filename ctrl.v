@@ -49,7 +49,7 @@ module ctrl(
 			ALU_OR = 3'b001,
 			ALU_SLTU = 3'b111,
 			ALU_NOR = 3'b100,
-			ALU_SRL = 3'b101,
+			ALU_SRLV = 3'b101,
 			ALU_XOR = 3'b011;
 
 	`define CPU_ctrl_signals {PCWrite, PCWriteCond, IorD, MemRead, MemWrite, IRWrite, MemtoReg[1:0], PCSource[1:0], ALUSrcB[1:0], ALUSrcA, RegWrite, RegDst[1:0], CPU_MIO}
@@ -98,7 +98,7 @@ module ctrl(
 								6'b100111: begin ALU_operation <= ALU_NOR; end
 								6'b101010: begin ALU_operation <= ALU_SLTU; end	// SLT, required by Sqs asm
 //								6'b101011: begin ALU_operation <= ALU_SLTU; end	// SLTU, removed for Sqs asm to work
-								6'b000010: begin ALU_operation <= ALU_SRL; end
+								6'b000110: begin ALU_operation <= ALU_SRLV; end
 								6'b001000: begin	// JR
 									`CPU_ctrl_signals <= 17'h10010;
 									state <= Jr;
@@ -128,11 +128,12 @@ module ctrl(
 							ALU_operation <= ALU_XOR;
 							state <= I_Exe;
 						end
-//						6'b001010: begin	// SLTI, removed for reset (and possibly more) to work with Sqs asm
-//							`CPU_ctrl_signals <= 17'h00050;
-//							ALU_operation <= ALU_SLTU;
-//							state <= I_Exe;
-//						end
+						// Unremoved for my own asm
+						6'b001010: begin	// SLTI, removed for reset (and possibly more) to work with Sqs asm
+							`CPU_ctrl_signals <= 17'h00050;
+							ALU_operation <= ALU_SLTU;
+							state <= I_Exe;
+						end
 						6'b001011: begin	// SLTIU, not requied for Sqs asm
 							`CPU_ctrl_signals <= 17'h00050;
 							ALU_operation <= ALU_SLTU;

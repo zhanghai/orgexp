@@ -1,5 +1,6 @@
 *
 !.gitignore
+!asm
 !ipcore_dir
 !*.md
 !*.ngc

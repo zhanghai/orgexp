@@ -42,15 +42,16 @@ module life_game_dev_io(
 
 	assign block_data_out = map_index == 0 ? map_0[block_address] : map_1[block_address];
 
+	// Write to the next frame
 	always @(posedge clock) begin
 		if (block_write) begin
 			// Use 7'b1111111 to access map_index
 			if (&block_address == 1) begin
 				map_index <= block_data_in[0];
 			end else if (map_index == 0) begin
-				map_0[block_address] <= block_data_in;
-			end else begin
 				map_1[block_address] <= block_data_in;
+			end else begin
+				map_0[block_address] <= block_data_in;
 			end
 		end
 	end
