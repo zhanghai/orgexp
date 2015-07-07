@@ -6,7 +6,13 @@ module orgexp(
 		input [7:0] SW,
 		output [3:0] AN,
 		output [7:0] SEGMENT,
-		output [7:0] LED
+		output [7:0] LED,
+
+		output [2:0] red,
+		output [2:0] green,
+		output [1:0] blue,
+		output h_sync,
+		output v_sync
 	);
 
 	// U9 Anti_jitter
@@ -49,6 +55,17 @@ module orgexp(
 	wire [31:0] ram_data_in;
 	wire [9:0] ram_addr;
 	wire data_ram_we;
+
+	wire [31:0] lg_out;
+	wire lg_we;
+	wire [6:0] lg_addr;
+
+	// U0 life_game_dev_io
+	wire [9:0] x_position;
+	wire [8:0] y_position;
+	wire inside_video;
+	wire [31:0] block_data_out;
+	wire [7:0] color;
 
 	// U5 seven_seg_Dev_IO
 	wire [31:0] Disp_num;
@@ -142,7 +159,34 @@ module orgexp(
 		.Peripheral_in(Peripheral_in[31:0]),
 		.ram_data_in(ram_data_in[31:0]),
 		.ram_addr(ram_addr[9:0]),
-		.data_ram_we(data_ram_we)
+		.data_ram_we(data_ram_we),
+		
+		.lg_out(lg_out[31:0]),
+		.lg_we(lg_we),
+		.lg_addr(lg_addr[6:0])
+	);
+	life_game_dev_io U0 (
+		.clock(clk_io),
+		.block_write(lg_we),
+		.block_address(lg_addr[6:0]),
+		.block_data_in(Peripheral_in[31:0]),
+		.x_position(x_position[9:0]),
+		.y_position(y_position[8:0]),
+		.inside_video(inside_video),
+		.block_data_out(lg_out[31:0]),
+		.color(color[7:0])
+	);
+	assign red = color[7:5];
+	assign green = color[4:2];
+	assign blue = color[1:0];
+	vga_controller U00 (
+		.clock_25mhz(clk_io),	// FIXME
+		.reset(rst),
+		.h_sync(h_sync),
+		.v_sync(v_sync),
+		.inside_video(inside_video),
+		.x_position(x_position[9:0]),
+		.y_position(y_position[8:0])
 	);
 	seven_seg_Dev_IO U5 (
 		.clk(clk_io),
