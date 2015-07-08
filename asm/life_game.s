@@ -14,6 +14,7 @@
 	.eval	COL_MAX = 32;
 
 start:
+	move	$s0, $zero
 	move	$s1, $zero
 	move	$s2, $zero
 // Save the next block at $s1, $s2
@@ -203,9 +204,10 @@ save_block:
 	jr	$ra
 
 // Save the world!
-// Set world index to $s0.
+// Flip $s0 and set world index to it.
 // @temp: $t4
 save_world:
+	xori	$s0, $s0, 1
 	li	$t4, LG_IDX_ADDR
 	sw	$s0, 0($t4)
 	jr	$ra
