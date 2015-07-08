@@ -58,13 +58,13 @@ module orgexp(
 
 	wire [31:0] lg_out;
 	wire lg_we;
-	wire [6:0] lg_addr;
+	wire [11:0] lg_addr;
 
 	// U0 life_game_dev_io
 	wire [9:0] x_position;
 	wire [8:0] y_position;
 	wire inside_video;
-	wire [31:0] block_data_out;
+	wire [31:0] cell_data_out;
 	wire [7:0] color;
 
 	// U5 seven_seg_Dev_IO
@@ -163,17 +163,17 @@ module orgexp(
 		
 		.lg_out(lg_out[31:0]),
 		.lg_we(lg_we),
-		.lg_addr(lg_addr[6:0])
+		.lg_addr(lg_addr[11:0])
 	);
 	life_game_dev_io U0 (
 		.clock(clk_io),
-		.block_write(lg_we),
-		.block_address(lg_addr[6:0]),
-		.block_data_in(Peripheral_in[31:0]),
+		.cell_write(lg_we),
+		.cell_address(lg_addr[11:0]),
+		.cell_data_in(Peripheral_in[31:0]),
 		.x_position(x_position[9:0]),
 		.y_position(y_position[8:0]),
 		.inside_video(inside_video),
-		.block_data_out(lg_out[31:0]),
+		.cell_data_out(lg_out[31:0]),
 		.color(color[7:0])
 	);
 	assign red = color[7:5];
