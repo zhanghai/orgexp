@@ -25,7 +25,7 @@ module MIO_BUS(
 		
 		input [31:0] lg_out,
 		output reg lg_we,
-		output reg [11:0] lg_addr
+		output reg [6:0] lg_addr
 	);
 
 	reg data_ram_rd;
@@ -53,7 +53,7 @@ module MIO_BUS(
 
 		lg_we = 0;
 		lg_rd = 0;
-		lg_addr = 11'b0;
+		lg_addr = 7'b0;
 
 		case (addr_bus[31:28])
 			4'h0: begin
@@ -65,7 +65,7 @@ module MIO_BUS(
 			end
 			4'hd: begin	// Life game
 				lg_we = mem_w;
-				lg_addr = addr_bus[11:0];
+				lg_addr = addr_bus[6:0];
 				Peripheral_in = Cpu_data2bus;
 				Cpu_data4bus = lg_out;
 				lg_rd = ~mem_w;
