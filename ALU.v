@@ -2,7 +2,7 @@
 
 module ALU(
 		input [31:0] A,
-		input [2:0] ALU_operation,
+		input [3:0] ALU_operation,
 		input [31:0] B,
 		output overflow,
 		output [31:0] res,
@@ -20,17 +20,21 @@ module ALU(
 			.overflow(overflow),
 			.S(S)
 	);
-	mux8to1_32 ALU_MUX (
-			.sel(ALU_operation[2:0]),
-			.x0(A & B),
-			.x1(A | B),
-			.x2(S[31:0]),
-			.x3(A ^ B),
-			.x4(~(A | B)),
-			.x5(B >> A[4:0]),
-			.x6(S[31:0]),
-			.x7({31'b0, S[32]}),
-			.o(res)
+	mux16to1 #(32) ALU_MUX (
+			.in({
+				{7{32'b0}},
+				B << A[4:0],
+				{31'b0, S[32]},
+				S[31:0],
+				B >> A[4:0],
+				~(A | B),
+				A ^ B,
+				S[31:0],
+				A | B,
+				A & B
+			}),
+			.select(ALU_operation),
+			.out(res)
 	);
 	assign zero = ~|res;
 endmodule

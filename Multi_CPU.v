@@ -29,7 +29,7 @@ module Multi_CPU(
 	wire [1:0] MemtoReg;
 	wire [1:0] ALUSrcB;
 	wire [1:0] PCSource;
-	wire [2:0] ALU_operation;
+	wire [3:0] ALU_operation;
 
 	// U12 M_datapath
 	wire zero;
@@ -56,7 +56,7 @@ module Multi_CPU(
 			.MemtoReg(MemtoReg[1:0]),
 			.ALUSrcB(ALUSrcB[1:0]),
 			.PCSource(PCSource[1:0]),
-			.ALU_operation(ALU_operation[2:0]),
+			.ALU_operation(ALU_operation[3:0]),
 			.state_out(state[4:0])
 	);
 	assign mem_w = MemWrite && (!MemRead);
@@ -76,7 +76,7 @@ module Multi_CPU(
 			.MemtoReg(MemtoReg[1:0]),
 			.ALUSrcB(ALUSrcB[1:0]),
 			.PCSource(PCSource[1:0]),
-			.ALU_operation(ALU_operation[2:0]),
+			.ALU_operation(ALU_operation[3:0]),
 			.Data_in(Data_in[31:0]),
 			.zero(zero),
 			.overflow(overflow),

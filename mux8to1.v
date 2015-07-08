@@ -17,5 +17,4 @@ module mux8to1(
 			select == 3'b101 ? in[6 * WIDTH - 1: 5 * WIDTH] :
 			select == 3'b110 ? in[7 * WIDTH - 1: 6 * WIDTH] :
 			in[8 * WIDTH - 1: 7 * WIDTH];
-
 endmodule

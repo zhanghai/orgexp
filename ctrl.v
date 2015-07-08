@@ -9,7 +9,7 @@ module ctrl(
 		input MIO_ready,
 		output reg MemRead,
 		output reg MemWrite,
-		output reg [2:0] ALU_operation,
+		output reg [3:0] ALU_operation,
 		output [4:0] state_out,
 		output reg CPU_MIO,
 		output reg IorD,
@@ -43,14 +43,15 @@ module ctrl(
 			Jr = 4'b1110,
 			Jal = 4'b1111;
 	localparam
-			ALU_ADD = 3'b010,
-			ALU_SUB = 3'b110,
-			ALU_AND = 3'b000,
-			ALU_OR = 3'b001,
-			ALU_SLTU = 3'b111,
-			ALU_NOR = 3'b100,
-			ALU_SRLV = 3'b101,
-			ALU_XOR = 3'b011;
+			ALU_AND = 4'b0000,
+			ALU_OR = 4'b0001,
+			ALU_ADD = 4'b0010,
+			ALU_XOR = 4'b0011,
+			ALU_NOR = 4'b0100,
+			ALU_SRLV = 4'b0101,
+			ALU_SUB = 4'b0110,
+			ALU_SLTU = 4'b0111,
+			ALU_SLLV = 4'b1000;
 
 	`define CPU_ctrl_signals {PCWrite, PCWriteCond, IorD, MemRead, MemWrite, IRWrite, MemtoReg[1:0], PCSource[1:0], ALUSrcB[1:0], ALUSrcA, RegWrite, RegDst[1:0], CPU_MIO}
 
@@ -97,8 +98,9 @@ module ctrl(
 								6'b100110: begin ALU_operation <= ALU_XOR; end
 								6'b100111: begin ALU_operation <= ALU_NOR; end
 								6'b101010: begin ALU_operation <= ALU_SLTU; end	// SLT, required by Sqs asm
-//								6'b101011: begin ALU_operation <= ALU_SLTU; end	// SLTU, removed for Sqs asm to work
+								6'b101011: begin ALU_operation <= ALU_SLTU; end	// SLTU, removed for Sqs asm to work
 								6'b000110: begin ALU_operation <= ALU_SRLV; end
+								6'b000100: begin ALU_operation <= ALU_SLLV; end	// Need to be removed for Sqs asm to work
 								6'b001000: begin	// JR
 									`CPU_ctrl_signals <= 17'h10010;
 									state <= Jr;
