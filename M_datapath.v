@@ -15,7 +15,7 @@ module M_datapath(
 		input PCWrite,
 		input PCWriteCond,
 		input Branch,
-		input [2:0] ALU_operation,
+		input [3:0] ALU_operation,
 		output [31:0] PC_Current,
 		input [31:0] Data_in,
 		output [31:0] Inst,
@@ -110,7 +110,7 @@ module M_datapath(
 	ALU U1 (
 			.A(A[31:0]),
 			.B(B[31:0]),
-			.ALU_operation(ALU_operation[2:0]),
+			.ALU_operation(ALU_operation[3:0]),
 			.zero(zero),
 			.res(res[31:0]),
 			.overflow(overflow)

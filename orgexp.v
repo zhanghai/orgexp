@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module orgexp(
-		input clk_50mhz,
+		input clk_100mhz,
 		input [3:0] BTN,
 		input [7:0] SW,
 		output [3:0] AN,
@@ -22,8 +22,10 @@ module orgexp(
 
 	// U8 clk_div
 	wire [31:0] clkdiv;
-	wire Clk_CPU;
-	wire clk_io;
+	// 12.5MHz
+	wire clk_CPU;
+	// 12.5MHz, inverted
+	wire clk_IO;
 
 	// U1 Multi_CPU
 	wire [31:0] inst_out;
@@ -33,7 +35,7 @@ module orgexp(
 	wire [31:0] Data_out;
 
 	// U3 RAM_B
-	wire clk_m;
+	wire clk_100mhz_inv;
 	wire [31:0] ram_data_out;
 
 	// U10 Counter_X
@@ -67,6 +69,9 @@ module orgexp(
 	wire [31:0] cell_data_out;
 	wire [7:0] color;
 
+	// U00 vga_controller
+	wire clock_25mhz;
+
 	// U5 seven_seg_Dev_IO
 	wire [31:0] Disp_num;
 	wire [3:0] blink_out;
@@ -76,7 +81,7 @@ module orgexp(
 	wire [3:0] blink;
 
 	Anti_jitter U9 (
-		.clk(clk_50mhz),
+		.clk(clk_100mhz),
 		.button(BTN[3:0]),
 		.SW(SW[7:0]),
 		.button_out(button_out[3:0]),
@@ -85,15 +90,15 @@ module orgexp(
 		.SW_OK(SW_OK[7:0])
 	);
 	clk_div U8 (
-		.clk(clk_50mhz),
+		.clk(clk_100mhz),
 		.rst(rst),
 		.SW2(SW_OK[2]),
 		.clkdiv(clkdiv[31:0]),
-		.Clk_CPU(Clk_CPU)
+		.Clk_CPU(clk_CPU)
 	);
-	assign clk_io = ~Clk_CPU;
+	assign clk_IO = ~clk_CPU;
 	Multi_CPU U1 (
-		.clk(Clk_CPU),
+		.clk(clk_CPU),
 		.reset(rst),
 		.inst_out(inst_out[31:0]),
 		.INT(counter0_OUT),
@@ -106,16 +111,16 @@ module orgexp(
 		.Data_out(Data_out[31:0]),
 		.CPU_MIO()
 	);
-	assign clk_m = ~clk_50mhz;
+	assign clk_100mhz_inv = ~clk_100mhz;
 	RAM_B U3 (
 		.addra(ram_addr[9:0]),
 		.wea(data_ram_we),
 		.dina(ram_data_in[31:0]),
-		.clka(clk_m),
+		.clka(clk_100mhz_inv),
 		.douta(ram_data_out[31:0])
 	);
 	Counter_x U10 (
-		.clk(clk_io),
+		.clk(clk_IO),
 		.rst(rst),
 		.clk0(clkdiv[7]),
 		.clk1(clkdiv[10]),
@@ -129,7 +134,7 @@ module orgexp(
 		.counter_out(counter_out[31:0])
 	);
 	led_Dev_IO U7 (
-		.clk(clk_io),
+		.clk(clk_IO),
 		.rst(rst),
 		.GPIOf0000000_we(GPIOf0000000_we),
 		.Peripheral_in(Peripheral_in[31:0]),
@@ -137,9 +142,9 @@ module orgexp(
 		.led_out(led_out[7:0]),
 		.GPIOf0()
 	);
-	assign LED = {led_out[7] | Clk_CPU, led_out[6:0]};
+	assign LED = led_out[7:0];
 	MIO_BUS U4 (
-		.clk(clk_50mhz),
+		.clk(clk_100mhz),
 		.rst(rst),
 		.mem_w(mem_w),
 		.counter0_out(counter0_OUT),
@@ -166,7 +171,7 @@ module orgexp(
 		.lg_addr(lg_addr[6:0])
 	);
 	life_game_dev_io U0 (
-		.clock(clk_io),
+		.clock(clk_IO),
 		.cell_write(lg_we),
 		.cell_address(lg_addr[6:0]),
 		.cell_data_in(Peripheral_in[31:0]),
@@ -179,8 +184,9 @@ module orgexp(
 	assign red = color[7:5];
 	assign green = color[4:2];
 	assign blue = color[1:0];
+	assign clock_25mhz = clkdiv[1];
 	vga_controller U00 (
-		.clock_25mhz(clk_io),	// FIXME
+		.clock_25mhz(clock_25mhz),
 		.reset(rst),
 		.h_sync(h_sync),
 		.v_sync(v_sync),
@@ -189,12 +195,12 @@ module orgexp(
 		.y_position(y_position[8:0])
 	);
 	seven_seg_Dev_IO U5 (
-		.clk(clk_io),
+		.clk(clk_IO),
 		.rst(rst),
 		.GPIOe0000000_we(GPIOe0000000_we),
 		.Test(SW_OK[7:5]),
-		.point_in(32'b11111111111111111111111111111111),
-		.blink_in({24'b000000000000000000000000, blink[3:0], blink[3:0]}),
+		.point_in({32{1'b1}}),
+		.blink_in({{24{1'b0}}, blink[3:0], blink[3:0]}),
 		.disp_cpudata(Peripheral_in[31:0]),
 		.Test_data1({2'b00, PC_out[31:2]}),
 		.Test_data2(counter_out[31:0]),

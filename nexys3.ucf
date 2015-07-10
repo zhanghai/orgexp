@@ -4,9 +4,9 @@
 ## - rename the used signals according to the project
 
 ##Clock signal
-Net "clk_50mhz" LOC = V10 | IOSTANDARD = LVCMOS33;
-Net "clk_50mhz" PERIOD = 10ns; #10ns = 50mHz
-#Net "clk_50mhz" TNM_NET = sys_clk_pin;
+Net "clk_100mhz" LOC = V10 | IOSTANDARD = LVCMOS33;
+#Net "clk_50mhz" PERIOD = 10ns; #10ns = 50mHz
+Net "clk_100mhz" TNM_NET = sys_clk_pin;
 #TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 100000 kHz;
 
 ## onBoard USB controller
