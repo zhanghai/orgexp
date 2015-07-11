@@ -1,8 +1,6 @@
 `timescale 1ns / 1ps
 
 module MIO_BUS(
-		input clk,	// 
-		input rst,	//  BTN3
 		input [3:0] BTN,	// 4 
 		input [7:0] SW,	// 8 
 		input mem_w,	//  CPU

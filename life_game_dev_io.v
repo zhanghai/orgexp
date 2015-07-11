@@ -22,7 +22,8 @@ module life_game_dev_io(
 
 	wire [5:0] x_address;
 	wire [5:0] y_address;
-	wire [31:0] vga_cell;
+	wire [31:0] vga_block;
+	wire vga_cell;
 
 	wire [7:0] color_life;
 	wire [7:0] color_empty;
@@ -55,11 +56,12 @@ module life_game_dev_io(
 
 	assign x_address = x_position / 10;
 	assign y_address = y_position / 10;
-	assign vga_cell = world_index == 0 ? world_0[{y_address, x_address[5]}] : world_1[{y_address, x_address[5]}];
+	assign vga_block = world_index == 0 ? world_0[{y_address, x_address[5]}] : world_1[{y_address, x_address[5]}];
+	assign vga_cell = vga_block[x_address[4:0]];
 
 	always @(*) begin
 		if (inside_video) begin
-			color = vga_cell[x_address[4:0]] ? COLOR_BLACK : COLOR_EMPTY;
+			color = vga_cell ? COLOR_BLACK : COLOR_EMPTY;
 		end else begin
 			color = 8'b0;
 		end

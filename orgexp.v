@@ -144,8 +144,6 @@ module orgexp(
 	);
 	assign LED = led_out[7:0];
 	MIO_BUS U4 (
-		.clk(clk_100mhz),
-		.rst(rst),
 		.mem_w(mem_w),
 		.counter0_out(counter0_OUT),
 		.counter1_out(counter1_OUT),
@@ -171,7 +169,7 @@ module orgexp(
 		.lg_addr(lg_addr[6:0])
 	);
 	life_game_dev_io U0 (
-		.clock(clk_IO),
+		.clock(clk_100mhz_inv),
 		.cell_write(lg_we),
 		.cell_address(lg_addr[6:0]),
 		.cell_data_in(Peripheral_in[31:0]),
