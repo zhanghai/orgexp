@@ -13,12 +13,16 @@
 	.eval	ROW_INC = 2;
 	.eval	COL_MAX = 32;
 
-.space 1024
-
 start:
 	li	$t0, 0xD0000000
-	li	$t1, 0xFFFFFFFF
+	lw	$t1, ($t0)
+	li	$t0, 0xD0000001
+	sw	$t1, ($t0)
+	li	$t0, 0xD0000004
+	sw	$t1, ($t0)
+	li	$t0, 0xD0000010
 	sw	$t1, ($t0)
 	li	$t0, 0xDFFFFFFF
+	li	$t1, 0xFFFFFFFF
 	sw	$t1, ($t0)
 	j start

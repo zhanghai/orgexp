@@ -92,10 +92,9 @@ module orgexp(
 	clk_div U8 (
 		.clk(clk_100mhz),
 		.rst(rst),
-		.SW2(SW_OK[2]),
-		.clkdiv(clkdiv[31:0]),
-		.Clk_CPU(clk_CPU)
+		.clkdiv(clkdiv[31:0])
 	);
+	assign clk_CPU = SW_OK[2] ? clkdiv[24] : clkdiv[2];
 	assign clk_IO = ~clk_CPU;
 	Multi_CPU U1 (
 		.clk(clk_CPU),
@@ -173,6 +172,7 @@ module orgexp(
 		.cell_write(lg_we),
 		.cell_address(lg_addr[6:0]),
 		.cell_data_in(Peripheral_in[31:0]),
+		.world_clock(clkdiv[25]),
 		.x_position(x_position[9:0]),
 		.y_position(y_position[8:0]),
 		.inside_video(inside_video),

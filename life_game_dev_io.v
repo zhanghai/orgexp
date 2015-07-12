@@ -5,11 +5,12 @@ module life_game_dev_io(
 		input cell_write,
 		input [6:0] cell_address,
 		input [31:0] cell_data_in,
+		input world_clock,
 		input [9:0] x_position,
 		input [8:0] y_position,
 		input inside_video,
 		output [31:0] cell_data_out,
-		output reg [7:0] color
+		output [7:0] color
 	);
 
 	parameter COLOR_POINTER = 8'b110_110_10;
@@ -42,15 +43,13 @@ module life_game_dev_io(
 
 	// Write to the next frame
 	always @(posedge clock) begin
-		if (cell_write) begin
-			// Use 7'b1111111 to access world_index
-			if (&cell_address == 1) begin
-				world_index <= cell_data_in[0];
-			end else if (world_index == 0) begin
-				world_1[cell_address] <= cell_data_in;
-			end else begin
-				world_0[cell_address] <= cell_data_in;
-			end
+		if (cell_write && !world_index) begin
+			world_1[cell_address] <= cell_data_in;
+		end
+	end
+	always @(posedge clock) begin
+		if (cell_write && world_index) begin
+			world_0[cell_address] <= cell_data_in;
 		end
 	end
 
@@ -58,13 +57,9 @@ module life_game_dev_io(
 	assign y_address = y_position / 10;
 	assign vga_block = world_index == 0 ? world_0[{y_address, x_address[5]}] : world_1[{y_address, x_address[5]}];
 	assign vga_cell = vga_block[x_address[4:0]];
+	assign color = inside_video ? (vga_cell ? COLOR_BLACK : COLOR_EMPTY) : 8'b0;
 
-	always @(*) begin
-		if (inside_video) begin
-			color = vga_cell ? COLOR_BLACK : COLOR_EMPTY;
-		end else begin
-			color = 8'b0;
-		end
+	always @(posedge world_clock) begin
+		world_index <= !world_index;
 	end
-
 endmodule

@@ -3,9 +3,7 @@
 module clk_div(
 		input clk,
 		input rst,
-		input SW2,
-		output reg [31:0] clkdiv,
-		output Clk_CPU
+		output reg [31:0] clkdiv
 	);
 
 	always @(posedge clk or posedge rst) begin
@@ -15,6 +13,4 @@ module clk_div(
 			clkdiv <= clkdiv + 1'b1;
 		end
 	end
-
-	assign Clk_CPU = SW2 ? clkdiv[24] : clkdiv[2];
 endmodule
