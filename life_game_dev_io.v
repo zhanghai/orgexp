@@ -32,30 +32,43 @@ module life_game_dev_io(
 	wire [7:0] color_cell_circlized;
 
 	initial begin
+
 		world_0[0][1] = 1;
 		world_0[2][2] = 1;
 		world_0[4][0] = 1;
 		world_0[4][1] = 1;
 		world_0[4][2] = 1;
+
+		world_0[14][4:0] = 5'b11111;
+		world_0[16][4:0] = 5'b11111;
+		world_0[18][4:0] = 5'b11111;
+		world_0[20][4:0] = 5'b11111;
+		world_0[22][4:0] = 5'b11111;
+
+		world_0[15][2] = 1;
+		world_0[17][3] = 1;
+		world_0[19][1] = 1;
+		world_0[19][2] = 1;
+		world_0[19][3] = 1;
 	end
 
-	assign cell_data_out = world_index == 0 ? world_0[cell_address] : world_1[cell_address];
+	assign cell_data_out = world_index ? world_1[cell_address] : world_0[cell_address];
 
 	// Write to the next frame
-	always @(posedge clock) begin
-		if (cell_write && !world_index) begin
-			world_1[cell_address] <= cell_data_in;
-		end
-	end
 	always @(posedge clock) begin
 		if (cell_write && world_index) begin
 			world_0[cell_address] <= cell_data_in;
 		end
 	end
+	always @(posedge clock) begin
+		if (cell_write && !world_index) begin
+			world_1[cell_address] <= cell_data_in;
+		end
+	end
 
 	assign x_address = x_position / 10;
 	assign y_address = y_position / 10;
-	assign vga_block = world_index == 0 ? world_0[{y_address, x_address[5]}] : world_1[{y_address, x_address[5]}];
+	assign vga_block = world_index ? world_1[{y_address, x_address[5]}] : world_0[{y_address, x_address[5]}];
 	assign vga_cell = vga_block[x_address[4:0]];
 	assign color = inside_video ? (vga_cell ? COLOR_BLACK : COLOR_EMPTY) : 8'b0;
 

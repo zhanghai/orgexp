@@ -1,5 +1,5 @@
 // $s0: world_index.
-// $s1: Current row index, 0 to 47.
+// $s1: Current row index, 0 to 47 _ 0.
 // $s2: Current block index, 0 to 1.
 // $s3: Current in-block column index, 0 to 31.
 // $s4: Current adjacent sum.
@@ -37,8 +37,8 @@ save_next_block_cell:
 	slti	$t5, $s2, 1
 	and	$t4, $t4, $t5
 	beq	$t4, $zero, save_next_block
-	// We have done a world, update the world index
-	jal	save_world
+//	// We have done a world, update the world index
+//	jal	save_world
 	j	save_next_block
 
 // Set $s1, $s2 to the block after it, wraps around if out of range.
@@ -62,23 +62,24 @@ advance_block_return:
 save_next_cell:
 	move	$s6, $ra
 	move	$s4, $zero
-	// Top
+	// Top - Left
 	jal	set_top
-	// Left
 	jal	set_left
 	jal	add_cell
-	// Horizontal center
+	// Top - Horizontal center
+	jal	set_top
 	jal	set_horizontal_center
 	jal	add_cell
-	// Right
+	// Top - Right
+	jal	set_top
 	jal	set_right
 	jal	add_cell
-	// Vertical center
+	// Vertical center - Left
 	jal	set_vertical_center
-	// Left
 	jal	set_left
 	jal	add_cell
-	// Right
+	// Vertical center - Right
+	jal	set_vertical_center
 	jal	set_right
 	jal	add_cell
 	// Bottom
@@ -93,14 +94,14 @@ save_next_cell:
 	jal	set_right
 	jal	add_cell
 	// Set
-	jal	set_horizontal_center
-	jal	set_vertical_center
 	li	$t4, 2
 	beq	$s4, $t4, save_next_cell_keep
 	li	$t4, 3
 	beq	$s4, $t4, save_next_cell_alive
 	j	save_next_cell_dead
 save_next_cell_keep:
+	jal	set_horizontal_center
+	jal	set_vertical_center
 	jal	load_cell
 	j	save_next_cell_save
 save_next_cell_alive:
@@ -108,7 +109,6 @@ save_next_cell_alive:
 	j	save_next_cell_save
 save_next_cell_dead:
 	move	$t4, $zero
-	j	save_next_cell_save
 save_next_cell_save:
 	jal	save_cell
 	// Return
@@ -149,6 +149,7 @@ set_horizontal_center:
 // Set $t2, $t3 to left of $s2, $s3, wraps around if out of range.
 // @temp $t4
 set_left:
+	move	$t2, $s2
 	addi	$t3, $s3, -1
 	slti	$t4, $t3, 0
 	beq	$t4, $zero, set_left_return
@@ -160,6 +161,7 @@ set_left_return:
 // Set $t2, $t3 to right of $s2, $s3.
 // @temp $t4
 set_right:
+	move	$t2, $s2
 	addi	$t3, $s3, 1
 	slti	$t4, $t3, COL_MAX
 	bne	$t4, $zero, set_right_return
@@ -174,8 +176,8 @@ load_cell:
 	or	$t4, $t1, $t2
 	li	$t5, LG_ADDR
 	or	$t4, $t4, $t5
-	lw	$t4, 0($t4)
-	srlv	$t4, $t4, $s3
+	lw	$t4, ($t4)
+	srlv	$t4, $t4, $t3
 	andi	$t4, $t4, 1
 	jr	$ra
 
@@ -191,7 +193,7 @@ add_cell:
 // Save the cell at ($s1, $s2,) $s3 from $t4 to $s5.
 save_cell:
 	sllv	$t4, $t4, $s3
-	or	$s5, $s5, $s3
+	or	$s5, $s5, $t4
 	jr	$ra
 
 // Save the block at $s1, $s2 from $s5.

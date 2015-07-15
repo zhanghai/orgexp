@@ -172,7 +172,7 @@ module orgexp(
 		.cell_write(lg_we),
 		.cell_address(lg_addr[6:0]),
 		.cell_data_in(Peripheral_in[31:0]),
-		.world_clock(clkdiv[25]),
+		.world_clock(clkdiv[26]),
 		.x_position(x_position[9:0]),
 		.y_position(y_position[8:0]),
 		.inside_video(inside_video),
