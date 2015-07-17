@@ -32,24 +32,15 @@ module life_game_dev_io(
 	wire [7:0] color_cell_circlized;
 
 	initial begin
-
-		world_0[0][1] = 1;
-		world_0[2][2] = 1;
-		world_0[4][0] = 1;
-		world_0[4][1] = 1;
-		world_0[4][2] = 1;
-
-		world_0[14][4:0] = 5'b11111;
-		world_0[16][4:0] = 5'b11111;
-		world_0[18][4:0] = 5'b11111;
-		world_0[20][4:0] = 5'b11111;
-		world_0[22][4:0] = 5'b11111;
-
-		world_0[15][2] = 1;
-		world_0[17][3] = 1;
-		world_0[19][1] = 1;
-		world_0[19][2] = 1;
-		world_0[19][3] = 1;
+		world_0[2][25] = 1;
+		world_0[4][23] = 1;	world_0[4][25] = 1;
+		world_0[6][14:13] = 2'b11;	world_0[6][22:21] = 2'b11;	world_0[7][4:3] = 2'b11;
+		world_0[8][12] = 1;	world_0[8][16] = 1;	world_0[8][22:21] = 2'b11;	world_0[9][4:3] = 2'b11;
+		world_0[10][2:1] = 2'b11;	world_0[10][11] = 1;	world_0[10][17] = 1; world_0[10][22:21] = 2'b11;
+		world_0[12][2:1] = 2'b11;	world_0[12][11] = 1;	world_0[12][15] = 1;	world_0[12][18:17] = 2'b11; world_0[12][23] = 1; world_0[12][25] = 1;
+		world_0[14][11] = 1;	world_0[14][17] = 1; world_0[14][25] = 1;
+		world_0[16][12] = 1;	world_0[16][16] = 1;
+		world_0[18][14:13] = 2'b11;
 	end
 
 	assign cell_data_out = world_index ? world_1[cell_address] : world_0[cell_address];
