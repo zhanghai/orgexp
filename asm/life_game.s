@@ -27,7 +27,7 @@ save_next_block_cell:
 	// Advance the cell (within this block).
 	addi	$s3, $s3, 1
 	slti	$t4, $s3, COL_MAX
-	beq	$t4, $zero, save_next_block_cell
+	bne	$t4, $zero, save_next_block_cell
 	// All next in-block cells saved to $s5, save this block.
 	jal	save_block
 	// Advance the block

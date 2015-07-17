@@ -14,6 +14,12 @@ module Regs(
 
 	reg [31:0] register [1:31];
 
+	initial begin
+		for (i = 1; i < 32; i = i + 1) begin
+			register[i] = 0;
+		end
+	end
+
 	assign rdata_A = R_addr_A == 0 ? 0 : register[R_addr_A];
 
 	assign rdata_B = R_addr_B == 0 ? 0 : register[R_addr_B];

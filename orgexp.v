@@ -94,7 +94,7 @@ module orgexp(
 		.rst(rst),
 		.clkdiv(clkdiv[31:0])
 	);
-	assign clk_CPU = SW_OK[2] ? clkdiv[24] : clkdiv[2];
+	assign clk_CPU = SW_OK[2] ? clkdiv[24] : clkdiv[1];
 	assign clk_IO = ~clk_CPU;
 	Multi_CPU U1 (
 		.clk(clk_CPU),

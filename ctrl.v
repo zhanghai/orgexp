@@ -68,7 +68,9 @@ module ctrl(
 	endtask
 
 	initial begin
-		GoToIF;
+		`CPU_ctrl_signals = 17'h12821;
+		ALU_operation = ALU_ADD;
+		state = IF;
 	end
 
 	always @(posedge clk or posedge reset) begin

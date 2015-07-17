@@ -8,6 +8,10 @@ module REG32(
 		output reg [31:0] Q
 	);
 
+	initial begin
+		Q = 32'b0;
+	end
+
 	always @(posedge clk or posedge rst) begin
 		if (rst) begin
 			Q <= 0;
